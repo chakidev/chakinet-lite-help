@@ -1,0 +1,166 @@
+BODY {
+       background-color: #ffffff;
+       align:left;
+       font-weight: normal;
+       font-size: 11pt;
+       }
+
+
+h1 { color: #333333;
+     font-weight: bold;
+     font-size: 14pt;
+     border-style: solid;
+     border-color: #9999cc;
+     border-width: 0 thick thin 0 ;   
+     padding: 0.3ex 2.4ex 0.3ex 1.2ex;
+
+ }
+
+h2 { border-style: solid;
+     border-color: #9999cc;
+     border-width: 0 0 0 thick;   
+     font-size: 12pt;
+     padding: 0.3ex 1.2ex 0.3ex 1.2ex;
+     color: #036;
+     background: white;
+     font-weight: bold; }
+
+h3 {
+       background-color: #ccccff;
+       font-weight: bold;
+       font-size: 11pt;
+       font-height: 11pt;
+}
+
+h4 {
+       background-color: #ccccff;
+       font-weight: bold;
+       font-size: 10pt;
+       font-height: 10pt;
+}
+
+li {
+       font-weight: normal;
+       font-family: helvetica;
+       font-variant: normal;
+       font-style: normal;
+         }
+STRONG{
+           color:red
+           }
+EM{
+           color:red
+           }
+A {
+           text-decoration: none
+           }
+A:link {
+          color: blue
+           }  
+A:visited {
+           color: maroon
+           } 
+A:hover {
+           text-decoration: underline
+           }     
+A:active {
+           color: red
+           }
+HR {
+           align:center
+           }
+P{
+       font-weight: normal;
+       font-family: helvetica;
+       margin-right:5%
+	   }
+BLOCKQUOTE{
+  white-space:  pre;
+  padding:      0.5em;
+  border-color: #9999cc;
+  border-style: outset;
+  border-width: 4px;
+  margin-left:12%;
+  margin-right:12%;
+}
+IMG {
+       border:0;
+}
+ABBR {
+           font-weight: bold;
+           color:gray
+	   }
+ACRONYM {
+           font-weight: bold;
+           color:gray
+	   }
+DIV {
+       font-weight: normal;
+       font-family: helvetica;
+}
+
+ADDRESS {
+       font-weight: normal;
+       font-size: 10pt;
+       font-height: 10pt;
+       font-family: helvetica;
+}
+
+table{
+  border-width: 4px;
+  border-style: solid;
+  border-color: #9999cc;
+  margin-left:15%;
+  margin-right:15%;
+  border-collapse: collapse;
+}
+th {
+  background-color: #ffff00;
+  font-size: 9pt;
+}
+td {
+	font-size: 9pt;
+}
+pre { 
+  white-space:  pre;
+  padding:      0.5em;
+  border-color: #9999cc;
+  border-style: outset;
+  border-width: 4px;
+  margin-left:15%;
+  margin-right:15%;
+}
+
+OL{
+       font-weight: normal;
+       font-family: helvetica;
+       margin-left:10%;
+       margin-right:10%
+	   }
+
+UL{
+       font-weight: normal;
+       font-family: helvetica;
+       margin-left:10%;
+       margin-right:10%
+	   }
+	   
+/********** ãríç **********/
+ol#footnote {
+  margin: 0px;
+  padding: 0px 0px 0px 1.5em;
+}
+ol#footnote li {
+  font-size: 80%;
+  line-height: 170%;
+  margin-top:1em;
+}
+ol#footnote li a.footnote-revref{
+  display:inline;
+  position: absolute;
+  left: 0px;
+  text-align: left;
+  text-decoration: none;
+  width: 1.5em;
+
+}
