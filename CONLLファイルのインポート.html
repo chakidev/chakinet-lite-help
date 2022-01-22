@@ -229,7 +229,11 @@ HEAD=0の文節は、文末ダミー文節への係りを持つことになり�
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>

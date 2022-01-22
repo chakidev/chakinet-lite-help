@@ -180,7 +180,11 @@ MWE Segmentを単語単位で付加し、それらの間にLinkを付与する�
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>

@@ -239,7 +239,11 @@ ID=0と1 のSentenceは、Document ID=0に属し、そのDocument属性は、
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>

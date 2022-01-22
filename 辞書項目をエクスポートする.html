@@ -85,7 +85,11 @@
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>

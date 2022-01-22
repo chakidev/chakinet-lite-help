@@ -140,7 +140,11 @@ Kwic/Textビューに取得された文のデータが追加されていきま�
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>

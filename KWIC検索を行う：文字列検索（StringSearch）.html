@@ -174,7 +174,11 @@ StringSearch以外の語ベースの検索だけでは後者を発見するこ�
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>

@@ -109,7 +109,11 @@ Link表示モードに切り替わり、係り受けLinkが非表示となり、
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>

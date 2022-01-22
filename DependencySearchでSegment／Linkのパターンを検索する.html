@@ -155,7 +155,11 @@ Key-Valueを入力する表を持ったポップアップが表示されます�
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>

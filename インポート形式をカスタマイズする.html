@@ -159,7 +159,11 @@ LineFormatは、フィールドの区切り方を選択する属性で、ChaSen�
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>

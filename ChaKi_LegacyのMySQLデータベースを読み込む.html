@@ -117,7 +117,11 @@ MySQLサーバに接続可能であることも確認してください。
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>

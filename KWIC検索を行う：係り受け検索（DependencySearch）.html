@@ -272,7 +272,11 @@ Box間の位置条件を指定する機能を持ちます。ボタンを押す�
               'data' : function (node) { return { 'id' : node.id }; }
             }
           }
-        });
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
       });
     </script>
   </body>
