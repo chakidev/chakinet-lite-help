@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <h3 id="h3-.NET.20Framework.204.x.E3.81.AE.E3.82.A4.E3.83.B3.E3.82.B9.E3.83.88.E3.83.BC.E3.83.AB">.NET Framework 4.xのインストール</h3>
+  <p>ChaKi.NETは、Windows XP, Vista, 7, 8, 8.1, 10 上にインストールすることができます。
+XPの場合は、Service Pack 2を当てた上で、.NET Framework 4.0の再頒布可能パッケージをインストールしてください。
+（参考：.NET Frameworkのダウンロード先：<a href="http://msdn.microsoft.com/ja-jp/netframework/aa569263%EF%BC%89" class="external" rel="nofollow">http://msdn.microsoft.com/ja-jp/netframework/aa569263）</a>
+Vista以降の場合、Windows Updateを行っていれば通常Version 4.0以降の.NET Frameworkが含まれています。
+そうでない場合（ChaKiインストールの最初にチェックされます）、Version 4.5.2または4.6を
+選んでインストールしてください。
+Windows 10には、.NET Framework 4.6が含まれているため、このステップは不要となります。
+</p>
+  <h3 id="h3-.21ChaKi.NET.E6.9C.AC.E4.BD.93.E3.81.AE.E3.82.A4.E3.83.B3.E3.82.B9.E3.83.88.E3.83.BC.E3.83.AB">ChaKi.NET本体のインストール</h3>
+  <p>ダウンロードページより、Setup.msiファイルをダウンロードし、ダブルクリックにより
+本体のインストールを開始します。<br />
+<img src="img/001.png" alt="001.png" id="emb-001.png-1" title="001.png" class="embed-image" width="513" height="419" /><br />
+この画面で、「次へ」を選択します。
+<img src="img/002.png" alt="002.png" id="emb-002.png-1" title="002.png" class="embed-image" width="513" height="419" /><br />
+「次へ」を選択します。
+<img src="img/003.png" alt="003.png" id="emb-003.png-1" title="003.png" class="embed-image" width="513" height="419" /><br />
+「次へ」を選択します。
+<img src="img/004.png" alt="004.png" id="emb-004.png-1" title="004.png" class="embed-image" width="513" height="419" /><br />
+以上でインストールは完了です。<br />
+次のような画面が出た場合は、既に同じバージョンのChaKi.NETがインストールされていますので、
+Setup.msiファイルが最新のものであることを確認し、画面を閉じるか、または「修復」を選択して
+再インストールを行います。<br />
+<img src="img/005.png" alt="005.png" id="emb-005.png-1" title="005.png" class="embed-image" width="513" height="419" /><br />
+「既に同じアプリケーションがインストールされています」というメッセージが出た場合は、
+コントロールパネルの「アプリケーションの追加と削除」からChaKi.NETをアンインストールし、
+再インストールを行ってください。
+<br />
+一旦インストールを行っているマシンに新しいバージョンを入れ直す場合は、最新のzip版を
+/Program Files/NAIST/ChaKi.NET/ 以下にコピーしてモジュールを直接上書きする方法もあります。
+</p>
+  <h3 id="h3-MySQL.E7.AD.89.E3.81.AE.E3.82.A4.E3.83.B3.E3.82.B9.E3.83.88.E3.83.BC.E3.83.AB">MySQL等のインストール</h3>
+  <p>MySQLをサーバとして使用する場合は、MySQLを別途インストールする必要があります。
+SQLiteのみを用いる場合は、DBサーバのインストールは不要です。<br />
+※動作確認は、MySQL Community Server Version 5.0.37で行っています。<br />
+※SQL Express, PostgreSQLは、現在のところ正規表現を用いた検索ができません。
+</p>
+  <p>MySQLのインストール時に、UTF-8を使用する設定にする必要があります。
+</p>
+  <p>インストールディレクトリの設定ファイル"my.ini"中で、
+</p>
+  <pre>[mysqld]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+</pre>
+  <p>として、サービスを再起動します。
+なお、Databaseを既に間違ったエンコードで作成していた場合、上書き再作成してもエンコードは変更されません。一旦DatabaseをDropするか、別名で新規に作成して下さい。</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

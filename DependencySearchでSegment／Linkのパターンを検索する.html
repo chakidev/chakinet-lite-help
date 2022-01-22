@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <h2 id="h2-.21DependencySearch.E3.81.A7Segment.2FLink.E3.81.AE.E3.83.91.E3.82.BF.E3.83.BC.E3.83.B3.E3.82.92.E6.A4.9C.E7.B4.A2.E3.81.99.E3.82.8B">DependencySearchでSegment/Linkのパターンを検索する</h2>
+  <p>基本編で説明したDependencySearchのパネルを使うと、文節・係り受けに限らない、一般的な
+Segment/Linkのパターンの出現をコーパスから検索することができます。
+</p>
+  <h3 id="h3-Segment.E3.81.A8.E3.81.9D.E3.81.AETag.E7.A8.AE.E9.A1.9E.E3.82.92.E6.8C.87.E5.AE.9A.E3.81.99.E3.82.8B">SegmentとそのTag種類を指定する</h3>
+  <p>DependencySearchパネルの背景色付きのBox（"Segment Box"）の左上に、通常は"Bunsetsu"と
+表示されたテキストボックスがあります。この上でマウスをクリックすると、現在選択されているコーパスの
+持つSegment Tagの一覧がポップアップ表示されます。
+</p>
+  <p>
+    <img src="img/177.png" alt="177.png" id="emb-177.png-1" title="177.png" class="embed-image" width="510" height="268" />
+</p>
+  <p>（下部のツールバーにより、Tag一覧の表示形式を変えたり新しいTagを追加することもできます。）
+</p>
+  <p>この一覧から検索パターンに使いたいTagを一つ選択することにより、このSegment Boxの表すSegmentのTagを
+デフォルトの"Bunsetsu"から任意のものに変更することができます。
+例えば、下記の状態では、このSegment Boxは"bccwj-pas:pred"という
+（BCCWJ述語項構造コーパスにおける）述語を表すSegmentにマッチすることを示します。
+</p>
+  <p>
+    <img src="img/175.png" alt="175.png" id="emb-175.png-1" title="175.png" class="embed-image" width="486" height="338" />
+</p>
+  <p>この条件で通常のDependencySearchと同様に検索を行うと、述語としてアノテーションされている語が
+KWICパネルにリストアップされます。
+</p>
+  <p>
+    <img src="img/176.png" alt="176.png" id="emb-176.png-1" title="176.png" class="embed-image" width="1406" height="284" />
+</p>
+  <p>なお、Segment Boxに含まれるWord Boxは文節・係り受け検索の場合と同様、そのSegmentの範囲に含まれるWord
+に対する条件として指定することができます。（WordはSegment Box内に最低1個必要です。）
+</p>
+  <h3 id="h3-Link.E3.81.A8.E3.81.9D.E3.81.AETag.E7.A8.AE.E9.A1.9E.E3.82.92.E6.8C.87.E5.AE.9A.E3.81.99.E3.82.8B">LinkとそのTag種類を指定する</h3>
+  <p>2つ以上のSegment Boxを追加したときには、それらの間にLink条件を設定することができます。ひとつのSegment Boxの
+内部（Word Box以外の色付き背景の場所）から他のSegment Boxの内部までマウスドラッグ操作を行うことにより、
+その2つのBox間に関連線（Link条件）が追加できます。
+</p>
+  <p>
+    <img src="img/178.png" alt="178.png" id="emb-178.png-1" title="178.png" class="embed-image" width="499" height="276" />
+</p>
+  <p>Link条件は矢印で表され、その中央にLink Tag名が表示されています。デフォルトでは、Tagは"*"（アスタリスク）で、
+任意の Link Tagにマッチすることを示していますが、このTag名の上で（マウスカーソルが"I"に変わった時に）クリック
+すると、Segment Tagと同様に、Link Tagを選択するポップアップが表示されますので、特定のTagにマッチさせたい
+場合は、その中から一つTagを選択します。
+</p>
+  <p>
+    <img src="img/179.png" alt="179.png" id="emb-179.png-1" title="179.png" class="embed-image" width="496" height="276" />
+</p>
+  <p>上記の条件は、述語(pred)から名詞句(np)へ、「ニ」格での関連が存在するようなパターンを表しており、赤枠のWord Box（KWICに
+おける中心語）が述語Segment Boxの中にあることから、述語Segment内の任意のWordをKWICのCenterとして、この関連に当てはまる
+生起をすべてリストします。
+</p>
+  <p>※ パターンは1文内に限られます。
+</p>
+  <h3 id="h3-Segment.2FLink.E3.81.AE.E5.B1.9E.E6.80.A7.28Attribute.29.E3.81.AB.E5.AF.BE.E3.81.99.E3.82.8B.E6.9D.A1.E4.BB.B6.E3.82.92.E8.BF.BD.E5.8A.A0.E3.81.99.E3.82.8B">Segment/Linkの属性(Attribute)に対する条件を追加する</h3>
+  <p>Segment, Linkアノテーションには、属性(Attribute)を付加することができますが、付加されたAttributeを用いて
+Segment/Linkパターンの絞り込みを行うことが可能です。
+</p>
+  <p>Segment Box, Link条件のそれぞれのTag名の右側にある<img src="img/180.png" alt="180.png" id="emb-180.png-1" title="180.png" class="embed-image" width="23" height="23" />ボタンをクリックすると、
+Key-Valueを入力する表を持ったポップアップが表示されます。
+</p>
+  <p>
+    <img src="img/181.png" alt="181.png" id="emb-181.png-1" title="181.png" class="embed-image" width="330" height="180" />
+</p>
+  <p>上記の例では、"MySpecialAttribute"という名称のAttributeを持っていてその値が"SomeValue"と一致するようなSegment/Linkのみが
+合致するものとみなされます。（Attributeは複数指定可能で、論理ANDで結合されます。すなわち、すべてが合致することが要求されます。）
+</p>
+  <p>なお、Attributeに対する条件が指定されているSegment, Link条件は、<img src="img/180.png" alt="180.png" id="emb-180.png-2" title="180.png" class="embed-image" width="23" height="23" />ボタンの色が赤になります。
+</p>
+  <p>
+    <img src="img/182.png" alt="182.png" id="emb-182.png-1" title="182.png" class="embed-image" width="492" height="279" />
+</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -59,58 +59,37 @@
   <div id="main">
     <article>
 <div class="wiki-content">
-  <p>ChaKiは、自然言語資料（コーパス）をRelational Databaseを用いて管理・編集・検索するためのツールです。
+  <p>ChaKi.NETの使用する語彙要素(Lexeme)の属性はテーブルのカラムとして既定の名称を持っており、デフォルトではその名称と順番にて検索条件パネルの語条件BoxやLexeme Attributeパネルに表示されますが、これらの表示方法をカスタマイズすることができます。
 </p>
-  <h2 id="h2-.21ChaKi.E3.81.A8.21ChaKi.NET">ChaKiとChaKi.NET</h2>
-  <p>ChaKiは、当初Win32ネイティブアプリケーションとしてMicrosoft Visual C++（GUI部）とRuby(Query部）により
-作成されました(ChaKi Legacy)。2008年より、これをさらに拡張し、高速化するため、GUI部とQuery部を
-統合し、またRapid Developmentを可能とするため、Microsoft .NET Framework/C#上に移植が行われました
-(ChaKi.NET)。
+  <p>メニューの"Options" - "Property Box Settings"をクリックして、下図のダイアログを表示させます。
 </p>
-  <p>DBの形式には互換性がありませんが、Legacy版で作成したMySQLのDBを付属のChakiDump.exeによりテキストファイルに
-ダンプし、.NET版でインポートすることができます。逆方向の互換性はサポートされません。
+  <p>
+    <img src="img/096.png" alt="096.png" id="emb-096.png-1" title="096.png" class="embed-image" width="585" height="378" />
 </p>
-  <h2 id="h2-.21ChaKi.NET.E3.81.AE.E7.89.B9.E5.BE.B4">ChaKi.NETの特徴</h2>
-  <p>ChaKi.NETには以下の特徴があります。
+  <p>TagNameカラムは、ChaKi.NETの語彙テーブルの持つオリジナルの属性名で編集不可です。これに対し、DisplayNameカラムは左の属性をどのような文字列で実際に表示するかを入力する編集可能な欄です。Visibleカラムはその属性を表示するか否かを指定する欄になります。行の順序（表示順）は、右上の上下矢印ボタンで選択行を上下させることで行うことができます。
 </p>
-  <ul>
-    <li>タグ付きコーパス対応<br />
-ChaSen, MeCabによる形態素解析済みテキスト、およびCabochaによる係り受け解析済みテキストを主要な
-入力とし、形態素や係り受けといった「タグ」を組み合わせた条件によるKWIC検索・表示・統計機能を持っています。
-</li>
-  </ul>
-  <ul>
-    <li>マルチRDB対応<br />
-ChaKi LegacyはMySQLのみに対応していましたが、Client-ServerでないファイルベースのDBであるSQLiteをはじめ、
-各種Client-Server型のRDB（MySQL, SQLExpress, PostgreSQL)から自由に選択が可能となっています。
-DBタイプは、コーパス単位で自由に組み合わせることができ、異なるタイプのDBを横断して検索することが可能です。
-</li>
-  </ul>
-  <ul>
-    <li>SLAT(Segment and Link-based Annotation Tool)とのDBスキーマ統合（予定）<br />
-アノテーション機能を強化するため、SLATで採用されているSegment, Link, Groupをベースとした
-アノテーションをサポートします。従来「文節」と「係り受け関係」とで表現していた係り受けデータは
-SegmentとLinkによる表現形式に変更されました。
-</li>
-  </ul>
-  <p>さまざまなツールとChaKi.NETの構造・機能関係図
-<a href="img/060.png"><img src="img/060.png" alt="060.png" id="emb-060.png-1" title="060.png" class="embed-image" width="480" height="269" /></a>
+  <p>この例では、BaseLexemeの名称を"orthBase"に、PartOfSpeechの名称を"POS"にそれぞれ変更し、また順序も入れ替えています。
 </p>
-  <h2 id="h2-.E4.B8.BB.E3.81.AA.E3.83.9E.E3.82.A4.E3.83.AB.E3.82.B9.E3.83.88.E3.83.BC.E3.83.B3">主なマイルストーン</h2>
-  <p>2011年度以降の主な開発予定項目は以下の通りです。
+  <p>なお、この結果はすぐに反映されますが、既に作成済みのWordListのカラム名のみは検索時の名称・並び順のまま変更されません。
+</p>
+  <p>また、WordListやCollocation実行時に、実際には値を持っている属性を非表示にすると予期しない結果となりますので注意が必要です。英語コーパスなどCForm, CTypeがすべて空で使われていない場合にそれらを非表示にするといった使用法であれば問題ありません。
+</p>
+  <p>この設定の影響を受けるのは下記の部分です。
 </p>
   <ul>
-    <li>高速化
+    <li>条件入力で使用される語Box
 </li>
-    <li>検索単位の柔軟な指定
+    <li>Lexemeパネル
 </li>
-    <li>属性情報の整理・表示・編集
+    <li>WordListのカラム
 </li>
-    <li>アノテーション情報による検索の拡張
+    <li>Collocation条件の"Targe Attributes"リスト
 </li>
-    <li>タグ（形態素・係り受け・アノテーション情報）付きコーパスフレームワークとしてベース部分の情報公開とAdd-inサポート
+    <li>コーパス情報のLexeme一覧のカラム
 </li>
   </ul>
+  <p>また、この設定内容はユーザのローカルフォルダ（Vistaの場合だと"Local SettingsChaKi.NET）の"PropertyBoxSettings.xml"にセーブされます。
+</p>
 </div>
         <hr>
         <div id="topic_footer">

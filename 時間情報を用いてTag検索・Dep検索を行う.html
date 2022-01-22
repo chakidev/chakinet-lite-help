@@ -58,6 +58,35 @@
 
   <div id="main">
     <article>
+<div class="wiki-content">
+  <h2 id="h2-.E6.99.82.E9.96.93.E6.83.85.E5.A0.B1.E3.82.92.E7.94.A8.E3.81.84.E3.81.A6Tag.E6.A4.9C.E7.B4.A2.E3.83.BBDep.E6.A4.9C.E7.B4.A2.E3.82.92.E8.A1.8C.E3.81.86">時間情報を用いてTag検索・Dep検索を行う</h2>
+  <p>時間情報を埋め込んだコーパスを用いて、Tag検索・Dependency検索ができます。
+</p>
+  <p>検索のための準備設定として、ChaKiのメニューから、"Options" - "Customize PropertyBox Rows" を選択し、下記のダイアログを表示します。
+</p>
+  <p>
+    <img src="img/146.png" alt="146.png" id="emb-146.png-1" title="146.png" class="embed-image" width="616" height="385" />
+</p>
+  <p>"StartTime", "EndTime", "Duration" の行について、"Visible"列にチェックを入れてください。
+これにより、Wordテーブル内の時間情報カラムが検索条件として使用できるようになります。
+</p>
+  <p>また、その右の"Kwic Row 2"について、これらのいずれかを選択すると、KWIC結果表示ビュー内で、語の時間属性を表示させることができます。
+</p>
+  <p>この準備を行った後、通常のTag SearchまたはDependency Searchのタブにて、時間条件を入力します。
+現在はこれらのカラムへの条件指定方法として、"min, max"の形でカンマで下限値、上限値を指定する形のみをサポートしています。
+</p>
+  <p>
+    <img src="img/147.png" alt="147.png" id="emb-147.png-1" title="147.png" class="embed-image" width="261" height="252" />
+</p>
+  <p>上図では、0.1 ≦ duration ≦ 0.2 という条件でTag Searchを行っています。Dependency Searchの場合も同様です。
+</p>
+  <p>検索結果は例えば下のように表示されます。
+</p>
+  <p>
+    <img src="img/148.png" alt="148.png" id="emb-148.png-1" title="148.png" class="embed-image" width="1019" height="368" />
+</p>
+  <p>KWIC Rowの設定によて、各語の下に時間情報が表示されています。見やすくするため、"/" 文字が時間情報の間に入ります。また、このKWIC画面では小数点以下3桁までを表示していますが、検索条件内では、doubleの精度に応じた桁数を用いることができます。</p>
+</div>
         <hr>
         <div id="topic_footer">
           <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>

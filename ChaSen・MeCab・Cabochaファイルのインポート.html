@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <h2 id="h2-.21ChaSen.E3.83.BB.21MeCab.E3.83.BB.21Cabocha.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.81.AE.E3.82.A4.E3.83.B3.E3.83.9D.E3.83.BC.E3.83.88">ChaSen・MeCab・!Cabochaファイルのインポート</h2>
+  <p>
+    <a href="全自動インポート.html">全自動インポート</a>機能では不足する場合や、既に解析済みのファイルがあって改めて解析を行いたくない場合には、
+別のツール(<a href="CreateCorpus.html">CreateCorpus</a>)を用いて解析済みファイルからコーパスをインポート・作成します。
+</p>
+  <p>次にインポートの手順を示します。
+</p>
+  <p>まず、"Tools"メニューからコーパス作成コマンドを選択します。
+<img src="img/009.png" alt="009.png" id="emb-009.png-1" title="009.png" class="embed-image" width="272" height="102" />
+</p>
+  <p>作成先がSQLiteの場合とその他の場合でコマンドが異なります。もっとも手軽なのは、
+SQLiteで、この場合はRDBサーバが不要で通常のファイルにコーパスが作成されます。
+一方、データベースを専用サーバで管理したい場合はMySQL等を選択します。
+ここでは、SQLite版のデータベースを作成するものとして説明します。メニューからコマンド
+"Create SQLite Corpus"を選択します。以下のようなダイアログが開きます。
+</p>
+  <p>
+    <img src="img/010.png" alt="010.png" id="emb-010.png-1" title="010.png" class="embed-image" width="548" height="226" />
+</p>
+  <ul>
+    <li>Input欄に、コーパスソースファイルのファイル名を入力します。
+</li>
+    <li>Input Character Code欄で、コーパスソースファイルの文字エンコード種別を選択します。
+</li>
+    <li>Input Type欄は通常はAutoとしておけば、コーパスソースファイルの種別が自動認識されます。
+自動認識がうまく働かない場合のみ、明示的に選択してください。
+</li>
+    <li>Output DB欄に、出力となるSQLite DBファイル名を入力します。既存のファイルは上書きされます。
+ファイルの拡張子は、.dbとしてください。
+</li>
+  </ul>
+  <p>
+    <img src="img/011.png" alt="011.png" id="emb-011.png-1" title="011.png" class="embed-image" width="548" height="226" />
+</p>
+  <p>以上の設定後、"Launch"ボタンを押すと、データベース作成が開始されます。経過は別ウィンドウに
+表示されます。（このウィンドウはCtrl+"C"を押すことで強制終了できます。）
+</p>
+  <p>
+    <img src="img/012.png" alt="012.png" id="emb-012.png-1" title="012.png" class="embed-image" width="541" height="886" />
+</p>
+  <p>この経過表示は、インポートの過程を示すもので、以下の処理段階それぞれの進捗を示します。 
+</p>
+  <ul>
+    <li>コーパスソースファイルの解析
+</li>
+    <li>コーパスソースファイルの種別判定結果
+</li>
+    <li>Sentenceの読み込み
+</li>
+    <li>Segment（ここでは文節）の読み込み・生成
+</li>
+    <li>Linkの読み込み・生成
+</li>
+    <li>デフォルトProjectの生成
+</li>
+    <li>Lexiconの保存（POS, CType, CForm, Lexeme)
+</li>
+    <li>Documentの保存
+</li>
+    <li>Sentenceの保存
+</li>
+    <li>Segmentの保存
+</li>
+    <li>Linkの保存
+</li>
+    <li>SentenceTagの保存
+</li>
+    <li>RDB Indexの更新
+</li>
+  </ul>
+  <p>"Done."と表示されたら終了です。終了したら、Enterキーを押してウィンドウを閉じます。入力ダイアログはまだ表示されたままですので、
+これも"Close"ボタンを押して閉じます。
+</p>
+  <p>以上でインポートは完了です。Explorer等でファイルが正しくできていることを確認してください。
+</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

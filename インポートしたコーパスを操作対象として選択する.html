@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <h3 id="h3-.E3.82.B3.E3.83.BC.E3.83.91.E3.82.B9.E3.81.AE.E9.81.B8.E6.8A.9E">コーパスの選択</h3>
+  <p>コーパスソースがインポートできて、データベースが作成されたら、次はそのデータベースを
+操作対象として選択します。これは、<a href="条件パネル.html">条件パネル</a>にある"Corpus"タブから行います。
+</p>
+  <p>
+    <img src="img/013.png" alt="013.png" id="emb-013.png-1" title="013.png" class="embed-image" width="418" height="196" />
+</p>
+  <p>Corpusタブにおいて、"Add"ボタンを押します。次のファイル選択ダイアログが表示されます。
+</p>
+  <p>
+    <img src="img/014.png" alt="014.png" id="emb-014.png-1" title="014.png" class="embed-image" width="570" height="434" />
+</p>
+  <p>SQLiteの場合は、通常のファイルを開く場合と同様に、作成されているデータベースファイルを
+選択します（ここでは、sanshiro.dbを選択しています）。
+</p>
+  <p>※MySQLの場合は、ファイルの種類を選択するリストボックスで"Corpus definition files(.def)"を
+選択し、データベースのdefファイルを選択します。
+</p>
+  <p>"開く"ボタンを押すと、Corpusタブのリストボックスに選択したデータベースが追加されます。
+（データベースの種別に応じたインジケータアイコンが左側に表示されています。）
+</p>
+  <p>
+    <img src="img/015.png" alt="015.png" id="emb-015.png-1" title="015.png" class="embed-image" width="418" height="190" />
+</p>
+  <p>この操作を繰り返すことで、複数のコーパスを選択することも可能です。
+複数のコーパスを選択した場合、矢印ボタンにより検索順序を変更することができます。
+</p>
+  <p>選択したコーパスを選択解除するには、解除したいコーパスをリストボックスで選択した状態で
+"Del"ボタンを押します。（コーパス自体が削除されるわけではありません。）
+</p>
+  <h3 id="h3-.E3.82.B3.E3.83.BC.E3.83.91.E3.82.B9.E3.81.AE.E3.83.90.E3.83.BC.E3.82.B8.E3.83.A7.E3.83.B3.E5.A4.89.E6.8F.9B">コーパスのバージョン変換</h3>
+  <p>コーパスを選択した際に、下記のようなメッセージが表示される場合があります。これは、<a href="ChaKi.html">ChaKi</a>の現在のバージョンと
+選択したデータベースのバージョン（「スキーマバージョン」と呼びます）が不一致の場合に表示されるものです。
+</p>
+  <p>
+    <img src="img/172.png" alt="172.png" id="emb-172.png-1" title="172.png" class="embed-image" width="381" height="184" />
+</p>
+  <p>OKをクリックすると、データベースは自動変換され、最新のバージョンにアップグレードされます。念のために
+クリックして続行する前にデータベースのバックアップを取ることをお勧めします。
+</p>
+  <p>
+    <img src="img/173.png" alt="173.png" id="emb-173.png-1" title="173.png" class="embed-image" width="483" height="313" />
+</p>
+  <p>自動変換の過程は上のダイアログに表示されます。エラーなく変換されたことを"Messages"欄で確認したら、
+"Close"をクリックします。正常に変換されていれば、コーパス一覧に変換されたコーパスが追加されているはずです。
+</p>
+  <p>大量のデータベースに対して変換が必要な場合には、この確認プロセスを省略することができます。
+ダイアログを閉じる前に "Do not show this dialog hereafter" をチェックすれば、今後、確認メッセージは出ず、
+自動的に変換処理が実行されます。
+</p>
+  <p>なお、自動実行を行うか否かの設定は、"オプション"-"設定"で表示できる"Settings"ダイアログからも変更可能です。
+</p>
+  <p>
+    <img src="img/174.png" alt="174.png" id="emb-174.png-1" title="174.png" class="embed-image" width="462" height="334" />
+</p>
+  <p>"General"タブの"Skip confirmation dialog of DB Schema conversions" が上のチェックボックスと全く同じ働きをします。
+</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

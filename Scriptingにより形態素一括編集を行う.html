@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <p>
+    <a href="Scripting機能を用いる.html">Scripting機能を用いる</a>で説明した方法を用いて、一連の形態素編集操作をKwicViewに表示したKwic Listに対して一括適用することができます。
+</p>
+  <hr />
+  <p>
+    <strong>この操作を行う前には、DBをバックアップすることを強くお勧めします。</strong>
+</p>
+  <hr />
+  <p>例として、「理科/大学」というように分かれている語を結合して「理科大学」という固有名詞Lexemeにアサインし直すことを考えます。サンプルコーパス（"sanshiro.db"）では、これに該当する箇所が複数ありますので、まずそれらをTag SearchによりKwic Listの形にします。
+</p>
+  <p>
+    <img src="img/119.png" alt="119.png" id="emb-119.png-1" title="119.png" class="embed-image" width="806" height="481" />
+</p>
+  <p>次に、Dependencyパネルを用いて形態素編集により最初の文を編集します。
+</p>
+  <p>ここでは、(1)2語を連結、(2)新語「理科大学」を登録、(3)連結した語にその新語をアサイン、という順に編集を行い、結果をセーブします。
+</p>
+  <p>
+    <img src="img/120.png" alt="120.png" id="emb-120.png-1" title="120.png" class="embed-image" width="660" height="285" />
+</p>
+  <p>セーブしたら、後のスクリプト実行の妨げになるので、<strong>DBのロックを解除します</strong>(Dependencyパネルのツールバーから<img src="img/122.png" alt="122.png" id="emb-122.png-1" title="122.png" class="embed-image" width="16" height="16" />をクリック)。
+</p>
+  <p>次に、メインメニューから、"Search - View Last Edit"を選択します。すると先ほど行った編集操作をスクリプトで表したコードフラグメントが表示されます。
+</p>
+  <p>
+    <img src="img/121.png" alt="121.png" id="emb-121.png-1" title="121.png" class="embed-image" width="408" height="291" />
+</p>
+  <p>先頭のs=, c=, d=はそれぞれ、編集対象の文ID, 中心語の開始文字位置, ドキュメントIDを示しますが、その次の空行以降がこの3つのパラメータに対する相対位置関係を用いて記述された編集操作のスクリプトになります。
+この<strong>空行以下3行を下記のスケルトンコード内の#insert here --&gt;と#&lt;-- insert hereの間に挿入</strong>すれば、IronRubyによる一括変更スクリプトが出来上がります。
+</p>
+  <pre>load_assembly "System.Core"
+load_assembly "System.Windows.Forms"
+load_assembly "ChaKi.NET"
+load_assembly "ChaKiEntity"
+load_assembly "ChaKiService"
+
+current = ChaKi::MainForm.Instance.KwicView.GetModel()
+records = current.KwicList.Records
+records.each do |r|
+  next if !r.Checked
+  corpus = r.Crps
+  svc = ChaKi::Service::DependencyEdit::DepEditService.new
+  s = r.SenPos
+  svc.Open(corpus, s, nil)
+  d = r.Document.ID
+  c = r.StartCharPos + r.GetCenterCharOffset()
+  svc.CenterWordStartAt = c
+  begin
+#insert here --&gt;
+
+#&lt;-- insert here
+  rescue System::Exception =&gt; e
+     printf("Error at: %d (%s)\n", s, e)
+     next
+  ensure
+    svc.Close()
+  end
+  printf("OK: %d\n", s)
+  r.Checked = false
+end
+ChaKi::MainForm.Instance.KwicView.Invoke(System::Action.new { ChaKi::MainForm.Instance.KwicView.Refresh() })
+print "Done.\n"
+</pre>
+  <p>出来上がったスクリプトをScriptingパネルの上側にCtrl-v等で貼り付けます。
+</p>
+  <pre>load_assembly "System.Core"
+load_assembly "System.Windows.Forms"
+load_assembly "ChaKi.NET"
+load_assembly "ChaKiEntity"
+load_assembly "ChaKiService"
+
+current = ChaKi::MainForm.Instance.KwicView.GetModel()
+records = current.KwicList.Records
+records.each do |r|
+  next if !r.Checked
+  corpus = r.Crps
+  svc = ChaKi::Service::DependencyEdit::DepEditService.new
+  s = r.SenPos
+  svc.Open(corpus, s, nil)
+  d = r.Document.ID
+  c = r.StartCharPos + r.GetCenterCharOffset()
+  svc.CenterWordStartAt = c
+  begin
+  #insert here --&gt;
+svc.MergeWord(d, c+(0), c+(4), c+(2), "理科大学")
+svc.ChangeLexeme(d, c+(0), 8936)
+svc.Commit()
+  #&lt;-- insert here
+  rescue System::Exception =&gt; e
+     printf("Error at: %d (%s)\n", s, e)
+     next
+  ensure
+    svc.Close()
+  end
+  printf("OK: %d\n", s)
+  r.Checked = false
+end
+ChaKi::MainForm.Instance.KwicView.Invoke(System::Action.new { ChaKi::MainForm.Instance.KwicView.Refresh() })
+print "Done.\n"
+</pre>
+  <p>このスクリプトは、KwicViewにおいてチェックの入った行に対して操作を実行するように書かれていますので、<strong>実行前に先ほど編集を行った文を除いたすべての行にチェックを入れます</strong>。
+</p>
+  <p>2012/9/28 追記：DepEditService::Open() APIの引数が1個増えたことに対応して、"nil"引数をサンプルコードに追加しました。
+</p>
+  <p>実行すると次のように出力が得られます。
+</p>
+  <p>
+    <img src="img/123.png" alt="123.png" id="emb-123.png-1" title="123.png" class="embed-image" width="806" height="287" />
+</p>
+  <p>スクリプトにより、成功した行のチェックは解除されます。問題がある場合はエラーが表示され、該当するKwicListの行はチェックされたままとなります。
+</p>
+  <p>成功したら「理科大学」で再度Tag Searchを行い、編集結果を確認します。
+</p>
+  <p>
+    <img src="img/124.png" alt="124.png" id="emb-124.png-1" title="124.png" class="embed-image" width="803" height="437" />
+</p>
+  <p>なお、この操作によりコーパスから「理科」というLexemeを使用する語がなくなりますが、編集前の状態でDBに存在していたLexemeは削除されません。これに対し、編集中に中間状態として作成したLexemeで、編集終了(Commit)時に残っていないものは自動削除されます（Commit対象から外れる）。
+</p>
+  <p>参考までに、上記の編集を元に戻すためのコードフラグメントは次のようになります。
+</p>
+  <pre>svc.SplitWord(d, c+(0), c+(4), c+(2), "理科", "大学")
+svc.ChangeLexeme(d, c+(0), 8614)
+svc.ChangeLexeme(d, c+(2), 6627)
+svc.Commit()
+</pre>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

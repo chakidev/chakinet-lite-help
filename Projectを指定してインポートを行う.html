@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <h2 id="h2-Project.E3.82.92.E6.8C.87.E5.AE.9A.E3.81.97.E3.81.A6.E3.82.A4.E3.83.B3.E3.83.9D.E3.83.BC.E3.83.88.E3.82.92.E8.A1.8C.E3.81.86">Projectを指定してインポートを行う</h2>
+  <p>ChaKiには、wordテーブルおよび各アノテーションタグを階層化することのできる"Project"という概念が存在します。
+デフォルトではすべての要素はID=0のProject内に存在しますが、このデフォルトProject以外のProjectを作成することにより、
+wordやアノテーションをProject毎にグルーピングすることが可能となります。
+</p>
+  <p>Projectの用途としては、下記のようなものがあります。
+</p>
+  <ul>
+    <li>単語の長単位・短単位の格納
+</li>
+    <li>異なる観点から同一コーパスに対して行われたアノテーションの区別
+</li>
+    <li>文単位での多言語間対照コーパスの作成（sentenceはProjectの影響を受けないため、文単位で対照させることしかできません）
+</li>
+  </ul>
+  <h3 id="h3-.E6.96.B0.E3.81.97.E3.81.84Project.E3.82.92.E4.BD.9C.E6.88.90.E3.81.99.E3.82.8B">新しいProjectを作成する</h3>
+  <p>Projectを新たに作成するには、インポート(CreateCorpus)処理において、ID=0以外のProject IDを指定します。このとき、デフォルト
+プロジェクト(ID=0)が既に存在するコーパスを先に作成してあることが必要となります。
+</p>
+  <p>
+    <a href="img/160.png">
+      <img src="img/160.png" alt="160.png" id="emb-160.png-1" title="160.png" class="embed-image" width="480" height="244" />
+    </a>
+</p>
+  <p>この例では、既に存在するコーパス"sample.db"に対してProject ID=1となる新規Projectを追加しています。
+</p>
+  <p>この入力となるソースには、通常のインポートと全く同じソースが使用可能ですが、その内容については、
+既にデフォルトProject内にインポートされている内容と完全に<strong>同じDocument, Sentenceの出現順序に従っていて</strong>、
+各文内のwordの構成やアノテーションタグ(Segment, Link, Group) のみが異なるものを与えます。
+</p>
+  <ul>
+    <li>既に存在するProject IDを指定しないでください。現状では、既に存在していたProjectの中身を削除することはありませんので、word等の要素が二重に追加されてしまいます。
+</li>
+  </ul>
+  <ul>
+    <li>Projectが異なるword間で関連（多対多のマッピング）を保持することができるようになっています（「Word間マッピングのインポート」節を参照）。
+</li>
+  </ul>
+  <h3 id="h3-Project.E3.82.92.E6.8C.87.E5.AE.9A.E3.81.97.E3.81.A6.E6.A4.9C.E7.B4.A2.E3.82.92.E8.A1.8C.E3.81.86">Projectを指定して検索を行う</h3>
+  <p>メインツールバーの"Proj"欄（下記）にProject IDを指定すると、検索時にそのProject IDに合致する結果のみを得ることができます。
+</p>
+  <p>
+    <img src="img/161.png" alt="161.png" id="emb-161.png-1" title="161.png" class="embed-image" width="128" height="38" />
+</p>
+  <p>Project=0（短単位）とProject=1（長単位）両方の検索結果を並べて表示したものを下図に示します。
+</p>
+  <p>
+    <a href="img/162.png">
+      <img src="img/162.png" alt="162.png" id="emb-162.png-1" title="162.png" class="embed-image" width="480" height="199" />
+    </a>
+</p>
+  <h3 id="h3-.21DependencyEdit.E3.81.A8Project">DependencyEditとProject</h3>
+  <p>検索結果に対してDependencyEditを行うとき、検索に用いたProject ID、すなわちその結果が属しているProject IDがDependencyEditに
+伝えられます。そして、そのDependencyEditにおいて行われる編集(アノテーションタグの追加・削除等）は、そのProjectに対して
+行われることとなります。
+</p>
+  <h3 id="h3-.E3.82.B3.E3.83.BC.E3.83.91.E3.82.B9.E3.82.A8.E3.82.AF.E3.82.B9.E3.83.9D.E3.83.BC.E3.83.88.E6.A9.9F.E8.83.BD">コーパスエクスポート機能</h3>
+  <p>エクスポート処理においても対象とするProjectを指定する必要がありますが、現在のところ未対応です。
+</p>
+  <h2 id="h2-Word.E9.96.93.E3.83.9E.E3.83.83.E3.83.94.E3.83.B3.E3.82.B0.E3.81.AE.E3.82.A4.E3.83.B3.E3.83.9D.E3.83.BC.E3.83.88">Word間マッピングのインポート</h2>
+  <p>ChaKiには、WordとWordとの間の対応関係を示すための特別なテーブル"word_word"が存在しており、対応するWord間の対応関係を格納することができるようになっています。現在の所このテーブルは、異なるProject間でWordとWordとの対応関係を記述するのに使用することが想定されています。例えば、
+</p>
+  <ul>
+    <li>Project 0に通常の語順でのWordの並びが格納されていて、他のProjectには「読み順」などそれとは異なる語順のWordの並びが格納されている
+</li>
+    <li>Project 0に日本語、Project 1に英語というように対訳データを格納し、対応するWordをマークアップする
+</li>
+  </ul>
+  <p>などの使い方が考えられます。
+</p>
+  <p>Word間マッピングをインポートするコマンドは、コマンドラインから"ImportWordRelation.exe"を実行します。
+下記にUsageを示します。
+</p>
+  <pre>Usage: ImportWordRelation [Options] &lt;InputFile&gt; &lt;Output&gt;
+Options (default):
+  [-C] Do not pause on exit (false)
+  [-b] Make relations bi-directional (false)
+  [-a] Do not clear the mapping table; append mode (false)
+InputFile - TSV File
+Output    - .db file for SQLite / .def file for Others
+</pre>
+  <p>入力はProject, Sentence, WordNoの３つ組を基本として、From-word, To-wordを横に並べたTab-separated 形式となります。
+すなわち、各行は、
+</p>
+  <ol>
+    <li>From-wordのProject
+</li>
+    <li>From-wordのSentence No
+</li>
+    <li>From-wordのWord No
+</li>
+    <li>To-wordのProject
+</li>
+    <li>To-wordのSentence No
+</li>
+    <li>To-wordのWord No
+</li>
+  </ol>
+  <p>というカラムから成ります。
+</p>
+  <p>関係は、デフォルトではFrom-wordからTo-wordの一方向ですが、"-b"オプションを付けることで双方向とすることも可能です。この場合、1つの入力それぞれについて、方向を逆にした2つのレコードが挿入されます。
+</p>
+  <p>下に入力ファイルの例を示します。
+</p>
+  <pre>1	0	0	0	0	0
+1	0	1	0	2	4
+1	0	2	0	2	4
+1	0	3	0	2	5
+1	0	4	0	2	6
+1	0	5	0	2	1
+1	0	6	0	0	0
+1	0	7	0	3	33
+1	0	8	0	0	1
+1	0	9	0	0	1
+1	0	10	0	0	0
+1	0	11	0	0	1
+1	0	12	0	0	2
+1	0	13	0	0	1
+1	0	14	0	0	1
+1	0	15	0	0	2
+</pre>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <h2 id="h2-.E8.A8.AD.E5.AE.9A">設定</h2>
+  <h3 id="h3-General">General</h3>
+  <p>メニュー "オプション" - "設定"で表示されるダイアログの"General"タブではアプリケーションの全般的な設定を行います。
+</p>
+  <p>
+    <a href="img/183.png">
+      <img src="img/183.png" alt="183.png" id="emb-183.png-1" title="183.png" class="embed-image" width="300" height="164" />
+    </a>
+</p>
+  <h3 id="h3-Font.26Color">Font&amp;Color</h3>
+  <p>メニュー "オプション" - "設定"で表示されるダイアログの"Font&amp;Color"タブでは主要な部分のフォントと色を変更できます。
+</p>
+  <p>
+    <a href="img/184.png">
+      <img src="img/184.png" alt="184.png" id="emb-184.png-1" title="184.png" class="embed-image" width="300" height="140" />
+    </a>
+</p>
+  <h3 id="h3-Search">Search</h3>
+  <p>メニュー"オプション" - "設定"で表示されるダイアログの"Font&amp;Color"タブでは検索に関する設定を変更できます。
+</p>
+  <p>
+    <a href="img/185.png">
+      <img src="img/185.png" alt="185.png" id="emb-185.png-1" title="185.png" class="embed-image" width="300" height="160" />
+    </a>
+</p>
+  <ul>
+    <li>"Retrieve Extra Word Info"をチェックすると、Sentence Search/Tag Search/Dependency Search時に、各Wordの「Word間マッピング情報」をロードします。（「Word間マッピング情報」とは、複数のProjectを使った場合など、Word間のマッピングを表現するデータで、マップされたWordはKWIC Windowを分割したときに同時に強調表示されます。）
+このデータを持たないコーパスの検索時には、これを取得しないことにより高速化が図れますので、このスイッチをOFFにしておきます。
+</li>
+  </ul>
+  <ul>
+    <li>"Remote Server"のグループはテスト的なものであり、String Searchにコーパス本体ではなく外部のWebサービスを使用する場合に設定します。通常はOFFのままとします。
+</li>
+  </ul>
+  <h3 id="h3-KWIC.E8.A1.A8.E7.A4.BA.E8.A8.AD.E5.AE.9A">KWIC表示設定</h3>
+  <p>メニュー "オプション" - "語属性Box設定"で表示されるダイアログでは、Tag/Dependency Search条件に現れる語属性Boxに表示する属性の選択を行います。また、KWIC表示画面で２行表示の上部および下部に表示させる語属性、およびPOSタグの表示形式もここで設定します。
+</p>
+  <p>
+    <a href="img/186.png">
+      <img src="img/186.png" alt="186.png" id="emb-186.png-1" title="186.png" class="embed-image" width="300" height="194" />
+    </a>
+</p>
+  <h3 id="h3-.E8.AA.9E.E3.81.AE.E3.83.8F.E3.82.A4.E3.83.A9.E3.82.A4.E3.83.88.E8.A1.A8.E7.A4.BA.E8.89.B2.E8.A8.AD.E5.AE.9A">語のハイライト表示色設定</h3>
+  <p>メニュー "オプション" - "語のハイライト表示色設定"で表示されるダイアログでは、KWIC Viewで条件に合う語のハイライト表示を行うための条件を設定します。
+</p>
+  <p>
+    <a href="img/187.png">
+      <img src="img/187.png" alt="187.png" id="emb-187.png-1" title="187.png" class="embed-image" width="197" height="300" />
+    </a>
+</p>
+  <h3 id="h3-.E3.82.A2.E3.83.8E.E3.83.86.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E3.82.BF.E3.82.B0.E8.A1.A8.E7.A4.BA.E8.A8.AD.E5.AE.9A">アノテーションタグ表示設定</h3>
+  <p>メニュー "オプション" - "アノテーションタグ表示設定"で表示されるダイアログでは、DependencyEditパネルおよびKWIC Viewに表示されるアノテーション(Segment/Link/Group)の表示設定を行います。
+</p>
+  <p>
+    <a href="img/188.png">
+      <img src="img/188.png" alt="188.png" id="emb-188.png-1" title="188.png" class="embed-image" width="300" height="148" />
+    </a>
+</p>
+  <ul>
+    <li>アノテーションタグにショートカットとしてアルファベット1文字を割り当てると、DependencyEditでSegmentおよびLinkを作成する際にそのショートカットキーを利用することができます。
+</li>
+  </ul>
+  <h3 id="h3-.E5.8F.82.E7.85.A7.E8.BE.9E.E6.9B.B8.E8.A8.AD.E5.AE.9A">参照辞書設定</h3>
+  <p>メニュー "オプション" - "参照辞書設定"で表示されるダイアログでは、DependencyEditパネルで語の割り当てを変更する際に利用される外部辞書を設定することができます。（Web辞書(Cradle)も指定可能です→ただしこの仕様は未公開。）
+</p>
+  <p>
+    <a href="img/189.png">
+      <img src="img/189.png" alt="189.png" id="emb-189.png-1" title="189.png" class="embed-image" width="300" height="131" />
+    </a>
+</p>
+  <h3 id="h3-Window.E4.BD.8D.E7.BD.AE.E8.A8.AD.E5.AE.9A">Window位置設定</h3>
+  <p>アプリケーションのドッキング状態とウィンドウ位置は、Windowsユーザーのローカル設定フォルダ（C:\Users\&lt;ユーザー名&gt;\AppData\Local\ChaKi.NET）の下にある"DockState.xml", "UserSettingsGUI.xml"の２つのファイルに保存されています。これらのファイルを削除するとウィンドウの状態がインストール時に戻ります。
+また、ChaKi.NET.exeを"-r"オプション付きで起動するとドッキング状態を初期化して起動します（この場合、アプリケーション終了時までは、設定状態ファイルは以前のまま保持されます）。なお、アプリケーションをオプション付きで起動するには、Windowsキー+"R"「ファイル名を指定して実行」などを用います。
+</p>
+  <h3 id="h3-.21DependencyEdit.E8.A1.A8.E7.A4.BA.E8.A8.AD.E5.AE.9A">DependencyEdit表示設定</h3>
+  <p>DependencyEditパネルのツールバー上の”設定"ボタン <img src="img/190.png" alt="190.png" id="emb-190.png-1" title="190.png" class="embed-image" width="26" height="32" /> またはパネルの空白部分で右クリックし、「DependencyEdit設定」を選ぶと次のダイアログが表示され、アノテーション表示の様々な表示パラメータを変更することができます。
+</p>
+  <p>
+    <a href="img/191.png">
+      <img src="img/191.png" alt="191.png" id="emb-191.png-1" title="191.png" class="embed-image" width="265" height="300" />
+    </a> 
+</p>
+  <p>"Colorize Head Type of Words"をチェックすると、Cabochaの解析結果に応じた「独立語主辞」「付属語主辞」の語の下部にそれぞれ緑と赤で下線が表示されます（両者が重なる場合は茶色）。
+</p>
+  <ul>
+    <li>なお、"SegmentBox Margin X"を不必要に大きくすると、Segmentの文字範囲が正しく表示されなくなりますので注意してください。
+</li>
+  </ul>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

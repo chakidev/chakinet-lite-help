@@ -59,58 +59,33 @@
   <div id="main">
     <article>
 <div class="wiki-content">
-  <p>ChaKiは、自然言語資料（コーパス）をRelational Databaseを用いて管理・編集・検索するためのツールです。
+  <p>コーパス検索に使用する条件を入力するためのパネルです。
 </p>
-  <h2 id="h2-.21ChaKi.E3.81.A8.21ChaKi.NET">ChaKiとChaKi.NET</h2>
-  <p>ChaKiは、当初Win32ネイティブアプリケーションとしてMicrosoft Visual C++（GUI部）とRuby(Query部）により
-作成されました(ChaKi Legacy)。2008年より、これをさらに拡張し、高速化するため、GUI部とQuery部を
-統合し、またRapid Developmentを可能とするため、Microsoft .NET Framework/C#上に移植が行われました
-(ChaKi.NET)。
+  <p>
+    <img src="img/013.png" alt="013.png" id="emb-013.png-1" title="013.png" class="embed-image" width="418" height="196" />
 </p>
-  <p>DBの形式には互換性がありませんが、Legacy版で作成したMySQLのDBを付属のChakiDump.exeによりテキストファイルに
-ダンプし、.NET版でインポートすることができます。逆方向の互換性はサポートされません。
-</p>
-  <h2 id="h2-.21ChaKi.NET.E3.81.AE.E7.89.B9.E5.BE.B4">ChaKi.NETの特徴</h2>
-  <p>ChaKi.NETには以下の特徴があります。
+  <p>以下のタブから構成されています。
 </p>
   <ul>
-    <li>タグ付きコーパス対応<br />
-ChaSen, MeCabによる形態素解析済みテキスト、およびCabochaによる係り受け解析済みテキストを主要な
-入力とし、形態素や係り受けといった「タグ」を組み合わせた条件によるKWIC検索・表示・統計機能を持っています。
+    <li>Corpusタブ：検索対象コーパス条件を入力します。
+</li>
+    <li>Filterタブ：検索結果のフィルタ条件を入力します。
+</li>
+    <li>StringSearchタブ：String検索の条件を入力します。
+</li>
+    <li>TagSearchタブ：Tag検索の条件を入力します。
+</li>
+    <li>DependencySearchタブ：Dependency検索の条件を入力します。
+</li>
+    <li>Segment/Linkタブ（未実装）：Segment/Link検索の条件を入力します。
+</li>
+    <li>Collocationタブ：KWICデータに対するのCollocation条件を入力します。
 </li>
   </ul>
-  <ul>
-    <li>マルチRDB対応<br />
-ChaKi LegacyはMySQLのみに対応していましたが、Client-ServerでないファイルベースのDBであるSQLiteをはじめ、
-各種Client-Server型のRDB（MySQL, SQLExpress, PostgreSQL)から自由に選択が可能となっています。
-DBタイプは、コーパス単位で自由に組み合わせることができ、異なるタイプのDBを横断して検索することが可能です。
-</li>
-  </ul>
-  <ul>
-    <li>SLAT(Segment and Link-based Annotation Tool)とのDBスキーマ統合（予定）<br />
-アノテーション機能を強化するため、SLATで採用されているSegment, Link, Groupをベースとした
-アノテーションをサポートします。従来「文節」と「係り受け関係」とで表現していた係り受けデータは
-SegmentとLinkによる表現形式に変更されました。
-</li>
-  </ul>
-  <p>さまざまなツールとChaKi.NETの構造・機能関係図
-<a href="img/060.png"><img src="img/060.png" alt="060.png" id="emb-060.png-1" title="060.png" class="embed-image" width="480" height="269" /></a>
+  <p>パネルが表示されなくなった場合は、メニューの"View"-"Search Panel"を
+選択してください。（同メニューアイテムがチェック状態であるにもかかわらず
+パネルが表示されていない場合は、<a href="GUI設定のリセット.html">GUI設定のリセット</a>を行ってください。）
 </p>
-  <h2 id="h2-.E4.B8.BB.E3.81.AA.E3.83.9E.E3.82.A4.E3.83.AB.E3.82.B9.E3.83.88.E3.83.BC.E3.83.B3">主なマイルストーン</h2>
-  <p>2011年度以降の主な開発予定項目は以下の通りです。
-</p>
-  <ul>
-    <li>高速化
-</li>
-    <li>検索単位の柔軟な指定
-</li>
-    <li>属性情報の整理・表示・編集
-</li>
-    <li>アノテーション情報による検索の拡張
-</li>
-    <li>タグ（形態素・係り受け・アノテーション情報）付きコーパスフレームワークとしてベース部分の情報公開とAdd-inサポート
-</li>
-  </ul>
 </div>
         <hr>
         <div id="topic_footer">

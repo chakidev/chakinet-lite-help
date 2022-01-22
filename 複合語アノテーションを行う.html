@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <h2 id="h2-.E8.A4.87.E5.90.88.E8.AA.9E.E3.82.A2.E3.83.8E.E3.83.86.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E3.82.92.E8.A1.8C.E3.81.86">複合語アノテーションを行う</h2>
+  <p>外部辞書CradleExpressと連携する場合、DependencyEdit Panelを使って
+複合語(MWE)アノテーションを自動的に行うことができます。（限定公開機能）
+</p>
+  <p>DependencyEditパネルのツールバーから「MWE（複合語） Download」ボタンをクリックします。(下図赤丸部分)
+</p>
+  <p>
+    <img src="img/192.PNG" alt="192.PNG" id="emb-192.PNG-1" title="192.PNG" class="embed-image" width="700" height="116" />
+</p>
+  <div class="indent">
+</div>
+  <p>※ MWE Downloadボタンは、DependencyEditにおいて文編集を行っている間、有効となります。
+</p>
+  <p>ボタンをクリックすると、外部Web辞書(CradleExpress)にREST APIにより接続し、現在の文にマッチする複合語の候補を
+全てダウンロードします。
+REST APIとしては、CradleExpressの公開する下記のAPIを使用しています。
+</p>
+  <pre>API名: find_mwe
+Request:
+GET /find_mwe?surface=&lt;表層形&gt;
+Response:
+Requestの表層形と部分一致するようなMWEをDBより検索し、一致した語の全内容をJSON表現したもののリストを返す。
+</pre>
+  <p>現在の文に属するすべての語についてこのAPIを呼び、結果をグリッド形式でダイアログにてユーザーに提示します(下図)。
+</p>
+  <p>
+    <img src="img/193.png" alt="193.png" id="emb-193.png-1" title="193.png" class="embed-image" width="657" height="452" />
+</p>
+  <p>Placeholderを含むMWE項目については、Placeholderを文中のマッチするWordに置き換えます。
+上の例で、”looking for ~”という辞書内の語(MWE)は、Placeholder Wordを一つ持っているので、文中のPlaceholderになる可能性のある語すべてをChaKi側で展開し、”()”内に補ってリストしています。ここでは、forに続くすべての語がPlaceholderにマッチする可能性があるため、候補となっています。
+Cradle側のPlaceholderに何等かの制限（現在は品詞のみ。例えば”POS=NN”）があれば、ChaKi側でもその制限に合致する候補に絞り込んで表示します。
+</p>
+  <p>リストの各項目について、”Apply”カラムにチェックボックスを設けており、これをチェックするとその候補をDepdency構造上にアノテーションとして追加・表示します。
+上の例では”looking for (lens)”が正しい候補であるとユーザーが判断したとすると、それをチェックすることにより即座にDependency構造に下記のようなアノテーションが自動追加されます。
+</p>
+  <p>
+    <img src="img/194.PNG" alt="194.PNG" id="emb-194.PNG-1" title="194.PNG" class="embed-image" width="599" height="178" />
+</p>
+  <p>このアノテーションはCradleが持つMWE Dependency構造をそのまま適用したもので、”MWE” Link, “MWE” Segment, “MWE” Groupをすべて用いて行われます。
+</p>
+  <p>チェックを解除すると操作はundoされ、アノテーション追加操作を前の状態に戻すことができます。 
+</p>
+  <p>チェックボタンによる自動アノテーションは、チェック時に確定しますので、適宜check/uncheckを行いながら正しいMWEアノテーション状態を作り出し、完了した時点でダイアログを閉じると、その状態のままDependencyEditに戻ります。
+</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

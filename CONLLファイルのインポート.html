@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <h2 id="h2-CoNLL.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.81.AE.E3.82.A4.E3.83.B3.E3.83.9D.E3.83.BC.E3.83.88">CoNLLファイルのインポート</h2>
+  <p>
+    <a href="全自動インポート.html">全自動インポート</a>機能および詳細インポート機能（<a href="ChaSen・MeCab・Cabochaファイルのインポート.html">ChaSen・MeCab・Cabochaファイルのインポート</a>）いずれにおいても、Input Formatとして主に日本語を対象とするMecab/Cabocha諸形式に加えて、主に英語を対象とする CoNLL(Conference on Computational Natural
+Language Learning) 形式も選ぶことができます。
+</p>
+  <p>CoNLL形式は下記の場所で利用可能です。
+</p>
+  <ul>
+    <li>「全自動インポート<a href="Text2Corpus.html">Text2Corpus</a>」の場合は、入力フォーマットの自動認識機能により特に指定しなくてもCoNLL形式であると判断された場合にはCoNLL入力ファイルとして扱われます。
+</li>
+    <li> <a href="CreateCorpus.html">CreateCorpus</a>によるインポートでは、同じく自動認識機能で判定させるか、"Input Format"指定で"CONLL"を指定することにより強制的にCoNLL形式として入力させることもできます。
+</li>
+    <li>コーパスエクスポート機能において、出力形式を"CONLL"とすると、コーパスの内容をCoNLL形式で出力させることができます。
+</li>
+  </ul>
+  <p>CoNLL形式の要点は以下の通りです。("The CoNLL 2007 Shared Task on Dependency Parsing", J. Nivre, et.al., Proc. CoNLL Shared Task Session of EMNLP-CoNLL 2007, pp. 915–932)
+</p>
+  <ul>
+    <li>Plain Textファイルである。
+</li>
+    <li>文は1個の空行にて区切る。
+</li>
+    <li>各行は文内のトークン(単語）に対応し、下記のタブ区切りカラムにより構成される。各カラムの値がない（不定値）の場合は、半角のアンダースコア("_")を入れる。
+</li>
+  </ul>
+  <ol>
+    <li>ID: 文内のトークン番号で、1から開始される。
+</li>
+    <li>FORM: 表層形（句読点等も含む）
+</li>
+    <li>LEMMA: 基本形
+</li>
+    <li>CPOSTAG: 品詞の上位分類
+</li>
+    <li>POSTAG: 品詞の詳細分類
+</li>
+    <li>FEATS: 付加的属性。属性は制御文字および"|"以外の文字列で表される。複数の属性を持つ場合、"|"によって結合して一つの文字列とする。
+</li>
+    <li>HEAD: 現トークンのHEAD（係り先）トークンのID。なければ0。
+</li>
+    <li>DEPREL: 係りの種別（文字列）。
+</li>
+    <li>PHEAD: 使用しません。
+</li>
+    <li>PDEPREL: 使用しません。
+</li>
+  </ol>
+  <p>ChaKiにおいては、"FEATS"フィールドを下記の目的で使用しています。元ファイルのこれらの指定は、インポート時に適切に処理されます。
+</p>
+  <ol>
+    <li>"SP": この属性を持つトークンは直後に単語間の空白が存在することを示します。（単語列に含めたくないけれども元の文を復元するために必要な文字列は、Wordテーブルにて保持されます。現在のところ、インポート処理では空白文字のみを解釈します。）
+</li>
+    <li>"B-RB"など: 複合語に1語を割り当てる場合、IOB2タグを用いてその範囲を指定することができます。ハイフン以下の情報は複合語の品詞を表しています（現実装では、下記のテーブルに従って解釈されます）。複合語の範囲内にある係り受けは無視され、インポートされません。範囲内から出ていく係り受けが1つだけ存在する必要があります。また、1つのトークンに複数のIOB2属性が指定されていた場合、最初に見つかったもの以外は無視されます。
+</li>
+  </ol>
+  <p>複合語IOB2属性の品詞対応表
+</p>
+  <table class="wikitable">
+    <tbody>
+      <tr>
+        <td>ハイフンの後続文字列</td>
+        <td>複合語にアサインされる品詞</td>
+      </tr>
+      <tr>
+        <td>RB</td>
+        <td>RB-RB</td>
+      </tr>
+      <tr>
+        <td>IN</td>
+        <td>P-IN</td>
+      </tr>
+      <tr>
+        <td>DT</td>
+        <td>DT-DT</td>
+      </tr>
+      <tr>
+        <td>JJ</td>
+        <td>JJ-JJ</td>
+      </tr>
+      <tr>
+        <td>NN</td>
+        <td>NN-NN</td>
+      </tr>
+      <tr>
+        <td>PP</td>
+        <td>PP-PP</td>
+      </tr>
+      <tr>
+        <td>PRP</td>
+        <td>PR-PRP</td>
+      </tr>
+      <tr>
+        <td>PRP-S</td>
+        <td>PR-PRP</td>
+      </tr>
+      <tr>
+        <td>PRN</td>
+        <td>PR-PRP</td>
+      </tr>
+      <tr>
+        <td>UH</td>
+        <td>UH-UH</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>CoNLLにおいて"ID"と"HEAD"で記述される構文構造は、インポート処理内で、1トークンがChaKiの1文節(Bunsetsu Segment)として扱われ（つまり、1単語1文節）、そのIDの文節からHEAD IDの文節への係り受け(Link)が作成されます。
+HEAD=0の文節は、文末ダミー文節への係りを持つことになります。
+"DEPREL"フィールドは、そのフィールド値と同じ名称を持つLinkタグになります。
+</p>
+  <p>下記に、ChaKiの想定しているCoNLL入力サンプルを示します。
+</p>
+  <pre>1	Workers	_	NN	NNS	SP	2	nsubj	_	_
+2	described	_	VB	VBD	SP	0	root	_	_
+3	``	_	QUOTE	``	_	4	punct	_	_
+4	clouds	_	NN	NNS	SP	2	dobj	_	_
+5	of	_	P	IN	SP	4	prep	_	_
+6	blue	_	JJ	JJ	SP	7	amod	_	_
+7	dust	_	NN	NN	_	5	pobj	_	_
+8	''	_	QUOTE	''	SP	4	punct	_	_
+9	that	_	DT	WDT	SP	10	nsubj	_	_
+10	hung	_	VB	VBD	SP	4	rcmod	_	_
+11	over	_	P	IN	SP	10	prep	_	_
+12	parts	_	NN	NNS	SP	11	pobj	_	_
+13	of	_	P	IN	SP	12	prep	_	_
+14	the	_	DT	DT	SP	15	det	_	_
+15	factory	_	NN	NN	_	13	pobj	_	_
+16	,	_	PUNC	,	SP	10	punct	_	_
+17	even	_	RB	RB	B-IN|SP	21	advmod	_	_
+18	though	_	SC	IN	I-IN|SP	21	mark	_	_
+19	exhaust	_	NN	NN	SP	20	nn	_	_
+20	fans	_	NN	NNS	SP	21	nsubj	_	_
+21	ventilated	_	VB	VBD	SP	10	advcl	_	_
+22	the	_	DT	DT	SP	23	det	_	_
+23	area	_	NN	NN	_	21	dobj	_	_
+24	.	_	PUNC	.	_	2	punct	_	_
+
+</pre>
+  <p>これをインポートした結果（係り受け図）を下記に示します。IOB2タグにより、"even though"が1単語としてインポートされています。
+</p>
+  <p>
+    <img src="img/158.png" alt="158.png" id="emb-158.png-1" title="158.png" class="embed-image" width="1281" height="359" />
+</p>
+  <p>
+    <img src="img/159.png" alt="159.png" id="emb-159.png-1" title="159.png" class="embed-image" width="1279" height="363" />
+</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

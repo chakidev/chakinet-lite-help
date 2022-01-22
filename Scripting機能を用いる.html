@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <p>Scripting機能とは、スクリプト言語の処理系をアプリケーションにプラグイン的に組み込み、その処理系上で任意のプログラムを実行する機能です。アプリケーション外でスクリプト言語を動作させる場合と異なり、その時点でアプリケーション内に存在するオブジェクトにアクセスできるため、マクロ処理を記述するような用途に用いることができます。
+ChaKi.NETでは、IronPythonとIronRubyの2つの処理系をサポートしています。
+</p>
+  <p>Scripting機能は、Scriptingパネルを介して使用できます。Scriptingパネルが表示されていない場合は、メインメニューから"View - Scripting Panel"を選択して表示させます。
+</p>
+  <p>
+    <img src="img/115.png" alt="115.png" id="emb-115.png-1" title="115.png" class="embed-image" width="846" height="313" />
+</p>
+  <p>IronPython, IronRubyのランタイムが必要ですので、ChaKi.NETのインストール場所にそれらが存在しない場合は、各パッケージをダウンロードして、パッケージに含まれるdllをコピーして下さい。
+</p>
+  <div class="indent">- IronPythonの配布元: <a href="http://ironpython.codeplex.com/" class="external" rel="nofollow">http://ironpython.codeplex.com/</a>
+</div>
+  <div class="indent">
+    <div class="indent">コピーするDLL: <a href="IronPython.html">IronPython</a>.dll, <a href="IronPython.html">IronPython</a>.Modules.dll, Microsoft.Dynamic.dll, Microsoft.Scripting.dll, Microsoft.Scripting.Core.dll, Microsoft.Scripting.Debugging.dll, Microsoft.Scripting.<a href="ExtensionAttribute.html">ExtensionAttribute</a>.dll
+</div>
+  </div>
+  <div class="indent">- IronRubyの配布元: <a href="http://ironruby.net/" class="external" rel="nofollow">http://ironruby.net/</a>
+</div>
+  <div class="indent">
+    <div class="indent">コピーするDLL: <a href="IronRuby.html">IronRuby</a>.dll, <a href="IronRuby.html">IronRuby</a>.Libraries.dll, <a href="IronRuby.html">IronRuby</a>.Libraries.YAML.dll, Microsoft.Dynamic.dll, Microsoft.Scripting.dll, Microsoft.Scripting.Core.dll, Microsoft.Scripting.Debugging.dll, Microsoft.Scripting.<a href="ExtensionAttribute.html">ExtensionAttribute</a>.dll
+</div>
+  </div>
+  <p>Scriptingパネルは上部がスクリプトを記述するペインで、下部が実行結果を表示するペインとなります。
+例えば、上のパネルに次のように入力して、実行ボタン<img src="img/118.png" alt="118.png" id="emb-118.png-1" title="118.png" class="embed-image" width="16" height="16" />を押すと、スクリプトエンジンがDLLから動的に読み込まれ、スクリプトが実行されます。
+</p>
+  <p>
+    <img src="img/116.png" alt="116.png" id="emb-116.png-1" title="116.png" class="embed-image" width="842" height="311" />
+</p>
+  <p>スクリプトからは、ChaKi.NETのpublicなクラスを参照可能です。例えば、KwicViewの内容をExcelエクスポート用のメソッドを用いてリストするには、次のようにします(IronRuby)。
+</p>
+  <pre>load_assembly "System.Windows.Forms"
+load_assembly "ChaKi.NET"
+load_assembly "ChaKiEntity"
+
+current = ChaKi::MainForm.Instance.KwicView.GetModel()
+records = current.KwicList.Records
+records.each do |r|
+    print(r.Left.ToString2(false,false))
+    print("/");
+    print(r.Center.ToString2(false,false))
+    print("/");
+    print(r.Right.ToString2(false,false))
+    print("\n")
+end
+</pre>
+  <p>実行結果は次のようになります。
+</p>
+  <p>
+    <img src="img/117.png" alt="117.png" id="emb-117.png-1" title="117.png" class="embed-image" width="844" height="309" />
+</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

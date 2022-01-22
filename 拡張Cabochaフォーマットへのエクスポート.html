@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <p>KWICリストに存在する文を係り受け情報を含めて保存するために、ChaKi.NETはCabocha形式のエクスポート機能を備えています。但し、コーパスとファイルの間でインポート・エクスポートのラウンドトリップを完全に行うために、書誌情報やSegment/Link/Groupのアノテーション情報を含めるための拡張を行っています。ここでは便宜的に拡張Cabochaフォーマットと呼んでいますが、Cabochaとは無関係であり、ChaKi独自の拡張となっています。
+</p>
+  <p>エクスポートは、KWICリストを作成した状態でメニューの "File" - "Save As..."から行います。
+</p>
+  <p>Save/Exportダイアログが表示されたら、「ファイルの種類」において、"Cabocha files(*.cabocha)"を選択して、適当な場所・ファイル名で保存を実行します。これで拡張Cabochaフォーマットでの保存が行われます。
+</p>
+  <p>書誌情報も係り受け以外のアノテーションもない場合は、通常のCabochaファイルが生成されます。そうでない場合は、行頭が"# "で始まる拡張を加えた行を含むファイルが生成されます。この行の種類と意味は次の通りです。
+</p>
+  <h4 id="h4-.E3.82.B3.E3.83.A1.E3.83.B3.E3.83.88">コメント</h4>
+  <p>
+    <strong>##</strong>
+    <br />
+コメントを示します。
+</p>
+  <pre>## &lt;Text&gt;
+</pre>
+  <h4 id="h4-.E5.90.8D.E5.89.8D.E7.A9.BA.E9.96.93.28namespace.29">名前空間(namespace)</h4>
+  <p>このコーパス内に出現するTag名や属性のKey名にて使用される名称の曖昧性を除去するための名前空間宣言を示します。
+Namespace宣言は、XMLにおける&lt;xmlns&gt;要素と同じ役割を持ちます。
+</p>
+  <pre>#! NAMESPACE &lt;alias&gt; &lt;uri&gt;
+</pre>この宣言はコーパス単位（インポート単位）で管理されるため、ドキュメントごとではなく、ファイルの先頭にまとめて置くようにします。
+宣言の出現場所以降で、Tag名、属性のKey名は、alias + ":"という接頭辞によって修飾される可能性があることを示します。XMLの場合と同様、
+実際の名前空間識別子はuriで与えられるuniversal resource identifierであり、aliasはその短縮文字列表現です。uriは正しいuri表現であって
+他と重ならなければ任意の値を与えることが可能です。
+<h4 id="h4-.E3.83.89.E3.82.AD.E3.83.A5.E3.83.A1.E3.83.B3.E3.83.88.E3.82.BF.E3.82.B0">ドキュメントタグ</h4><p><strong>#! DOC</strong><br />
+次に現れる文からID=&lt;id&gt;を持つドキュメントが開始することを示します。
+</p><pre>#! DOC &lt;id&gt;
+</pre><p><strong>#! DOCID</strong><br />
+ID=&lt;id&gt;のドキュメントの書誌情報をXMLフラグメントによって定義します。
+</p><pre>#! DOCID\t&lt;id&gt;\t&lt;書誌情報&gt;
+</pre><p>（注）
+</p><ul><li>'\t'はタブ文字を表します。
+</li><li>idは1からアサインして下さい。id=0は、いずれのドキュメントにも属さない文（例えば、通常のMecabやCabochaデータに
+含まれる文にはドキュメントに関するアノテーションがありません）を格納するための
+特別なドキュメントとして予約されます。
+</li></ul><h4 id="h4-Segment.E3.82.A2.E3.83.8E.E3.83.86.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3">Segmentアノテーション</h4><p><strong>#! SEGMENT_S</strong><br />
+この位置の文に対する文内のSEGMENTアノテーションを示します。文頭からのオフセットにて開始・終了文字位置を表します。
+</p><pre>#! SEGMENT_S &lt;TagName&gt; &lt;StartPos&gt; &lt;EndPos&gt; "&lt;Comment&gt;"
+</pre><p><strong>#! SEGMENT</strong><br />
+この位置のドキュメントに対するSEGMENTアノテーションを示します。ドキュメント先頭からのオフセットにて開始・終了文字位置を表します。
+</p><pre>#! SEGMENT &lt;TagName&gt; &lt;StartPos&gt; &lt;EndPos&gt; "&lt;Comment&gt;"
+</pre><p>（注）一般に、"_S" SuffixのあるアノテーションはEOS行の直前に、"_S" Suffixのないアノテーションはドキュメントの最後のEOS行の後、次の#!DOCの始まる前に置きます。なお、後者を"_D"としないのは、スキーマにおいてアノテーションはドキュメント単位で解釈するのを既定としているためです。ChaKi.NETでは、<a href="StartPos.html">StartPos</a>-<a href="EndPos.html">EndPos</a>が文をまたがるようなSEGMENT定義はエラーとなり、インポート時に無視されます。
+</p><h4 id="h4-Link.E3.82.A2.E3.83.8E.E3.83.86.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3">Linkアノテーション</h4><p><strong>#! LINK_S</strong><br />
+この位置の文に対する文内のLINKアノテーションを示します。文内にあるSEGMENT_Sのインデックス番号を&lt;FromSegNo&gt;と&lt;ToSegNo&gt;に 0ベースの整数の形で空白で区切って並べます。
+</p><pre>#! LINK_S &lt;TagName&gt; &lt;FromSegNo&gt; &lt;ToSegNo&gt; "&lt;Comment&gt;"
+</pre><p><strong>#! LINK</strong><br />
+この位置のドキュメントに対するSEGMENTアノテーションを示します。ドキュメント内にあるSEGMENTのインデックス番号を&lt;FromSegNo&gt;と&lt;ToSegNo&gt;に0ベースの整数の形で空白で区切って並べます。
+</p><pre>#! LINK &lt;TagName&gt; &lt;FromSegNo&gt; &lt;ToSegNo&gt; "&lt;Comment&gt;"
+</pre><p>（注）
+</p><ul><li>「インデックス番号」は、SEGMENTを参照するためのインデックスで、SEGMENT行の出現ごとに+1されます。SEGMENT_SとSEGMENTの出現は互いに独立にカウントされ、前者はEOSに出会う度に、後者は#!DOCに出会う度に0にリセットされます。DBにおけるSegment IDとは無関係です。
+</li><li>参照されるSEGMENTはLINK, GROUPよりも前になければなりません。
+</li><li>係り受けは当然ながらLINKではなくCabochaのオリジナルの形で表現されます。
+</li></ul><h4 id="h4-Group.E3.82.A2.E3.83.8E.E3.83.86.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3">Groupアノテーション</h4><p><strong>#! GROUP_S</strong><br />
+この位置の文に対する文内のGROUPアノテーションを示します。文内にあるSEGMENT_Sのインデックス番号を&lt;SegNo&gt;以下に 0ベースの整数の形で空白で区切って並べます。
+</p><pre>#! GROUP_S &lt;TagName&gt; &lt;SegNo&gt;... "&lt;Comment&gt;"
+</pre><p><strong>#! GROUP</strong><br />
+この位置のドキュメントに対するGROUPアノテーションを示します。ドキュメント内にあるSEGMENTのインデックス番号を&lt;SegNo&gt;以下に 0ベースの整数の形で空白で区切って並べます。
+</p><pre>#! GROUP &lt;TagName&gt; &lt;SegNo&gt;... "&lt;Comment&gt;"
+</pre><h4 id="h4-Attribute.E3.82.A2.E3.83.8E.E3.83.86.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3">Attributeアノテーション</h4><p><strong>#! ATTR</strong><br />
+直前に出現したのアノテーション要素(Document, Segment, Link, Groupのいずれか)に対する属性を示します。属性とは、Key/Valueのペアであり、KeyおよびValueは特殊制御文字を除く文字から成る任意の文字列です。一つのKeyに対して一つのValueのみが許されます。Key名には名前空間による識別を用いることが推奨されます。
+</p><pre>#! ATTR &lt;Key&gt; &lt;Value&gt; "&lt;Comment&gt;"
+</pre><h4 id="h4-.E6.9C.AA.E5.AE.9A.E7.BE.A9">未定義</h4><p>上記以外の#で始まる行は未定義であり無視されます。定義されるまではコメントと同じ動作ですが、将来は別の意味に扱われる可能性があります。
+</p></div></BODY></HTML>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

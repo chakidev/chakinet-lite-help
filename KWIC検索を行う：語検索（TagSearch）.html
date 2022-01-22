@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <p>語単位の検索を行うTagSearchは、ChaKi.NETにおける標準的な
+KWIC作成方法であるといえます。
+</p>
+  <ul>
+    <li>形態素解析済みでないソースから作成されたコーパスでTagSearchを
+行うことはできません。
+</li>
+    <li>文境界を超える条件は作成できません。
+</li>
+  </ul>
+  <p>TagSearchを行うには、まずSearch Conditionsパネルにおいて、
+"Tag"タブを選択し、次の条件入力画面に移ります。
+</p>
+  <p>
+    <img src="img/042.png" alt="042.png" id="emb-042.png-1" title="042.png" class="embed-image" width="582" height="199" />
+</p>
+  <h4 id="h4-.E8.AA.9E.E6.9D.A1.E4.BB.B6Box.E3.81.AB.E6.9D.A1.E4.BB.B6.E3.82.92.E5.85.A5.E5.8A.9B.E3.81.99.E3.82.8B">語条件Boxに条件を入力する</h4>
+  <p>このタブ内に、任意数の語の並びに関する条件をグラフィカルに入力することで
+TagSearch条件を作成します。初期状態で１つの語条件Box（上図の赤枠の部分）が
+表示されている状態ですが、このBoxは"Surface（表層形）", "Reading（読み）",
+"Pronunciation（発音）", "BaseLexeme（基本形の表層形）", "PartOfSpeech（品詞）", 
+"CType（活用型）", "CForm（活用形）"という語属性カラムを持っています。
+<span id="_fn_ref-1" class="footnote-ref"><a href="#_fn_note-1">*1</a></span>
+それぞれのカラムの上でマウス左クリックすることにより、そのカラムへ文字列を
+入力することができます。例えば"Surface"カラム上でクリックすると次のような
+状態になります。
+</p>
+  <p>
+    <img src="img/043.png" alt="043.png" id="emb-043.png-1" title="043.png" class="embed-image" width="330" height="161" />
+</p>
+  <p>ポップアップする領域にエディットボックスがありますので、ここにSurfaceすなわち
+語の表層形を指定することができます。左にある２つのボタンはそれぞれ、
+</p>
+  <ul>
+    <li>R: 入力文字列を正規表現と解釈する（StringSearchと同様）
+</li>
+    <li>C: Case Sensitive（RがONのときは無視される）
+</li>
+  </ul>
+  <p>の意味です。
+また、下には過去に使用された候補文字列が表示されますので、候補があればクリックして
+選択することも可能です。
+入力を終えてリターンキーを押すかまたはポップアップ領域の外をクリックするとこの
+表示が消え、Surfaceカラムにあった&lt;Surface&gt;の表示が入力した文字列に
+置き換わっています。
+</p>
+  <p>同様に、"Reading"等のカラムにも条件となる文字列を同じ方法で入力することができます。
+条件として指定する必要のないカラムは空欄のままとします。
+</p>
+  <ul>
+    <li>既に入力したカラムを空欄に戻すには、空白を入力します。
+</li>
+  </ul>
+  <p>必要なカラムに条件を書き込むことで、１つの語に対するマッチング条件が完成します。
+下に例を示します。
+</p>
+  <p>
+    <img src="img/044.png" alt="044.png" id="emb-044.png-1" title="044.png" class="embed-image" width="169" height="146" />
+</p>
+  <h4 id="h4-.E8.AA.9E.E3.81.AE.E7.9B.B8.E5.AF.BE.E4.BD.8D.E7.BD.AE.E3.81.AE.E6.8C.87.E5.AE.9A">語の相対位置の指定</h4>
+  <p>ここで、語条件Boxの上部にある数字の意味ですが、これはKWICの中心となる位置を0とした
+語の文内相対位置範囲を表します。"0:0"は中心語そのものを表します。"m:n"ならば、中心語(+m)語目
+～(+n)語目（m ≤ n）の位置にその語があることを示します。このエディットボックスには自由に数字を入力することが
+可能ですが、"2:1"など間違った条件を入力するとマッチする語がないという結果になりますので
+注意してください。
+</p>
+  <p>この条件で検索を開始(Commandパネルの"<strong>Search</strong>")すると格助詞「に」を中心とした
+KWICが作成されますが、ここではもう一つ語条件Boxを追加してから検索開始することにします。
+</p>
+  <h4 id="h4-.E8.AA.9E.E6.9D.A1.E4.BB.B6Box.E3.81.AE.E8.BF.BD.E5.8A.A0">語条件Boxの追加</h4>
+  <p>語条件Boxの左右にある「+」ボタンは語条件Boxを追加するためのものです。
+右側の+を押すと右側に一つBoxが追加されます。相対位置範囲は自動的に"1:1"となり、
+中心語のすぐ右側に位置する語に対する条件となることがわかります（変更も可）。
+このBoxに、１語目と同様にして下のような条件を入力します。
+</p>
+  <p>
+    <img src="img/045.png" alt="045.png" id="emb-045.png-1" title="045.png" class="embed-image" width="285" height="145" />
+</p>
+  <p>この条件ですと、KWICの中心語にはすべて格助詞の「に」が並ぶことになりますが、
+興味のある対象が「どのような動詞が格助詞『に』の次に現れるか」ということで
+あった場合には、動詞の方を中心語としてKWICを作成する方が自然です。
+そこで、２番目の条件Boxを中心語に設定しなおすことにします。これには、
+Boxの右上にある赤い逆三角形をしたボタン("<strong>Centerize</strong>"ボタン）を押します。
+表示は次のように変わります。
+</p>
+  <p>
+    <img src="img/046.png" alt="046.png" id="emb-046.png-1" title="046.png" class="embed-image" width="279" height="147" />
+</p>
+  <ul>
+    <li>語条件Boxを消去するには、Boxの上でマウスを右クリックし、ポップアップした
+コンテクストメニューから、"<strong>Delete</strong>"を選択します。
+</li>
+  </ul>
+  <h4 id="h4-KWIC.E6.A4.9C.E7.B4.A2.E3.81.AE.E5.AE.9F.E8.A1.8C">KWIC検索の実行</h4>
+  <p>以上で条件が完成しましたので、検索を開始します。KWIC結果は次のようになります。
+</p>
+  <p>
+    <a href="img/047.png">
+      <img src="img/047.png" alt="047.png" id="emb-047.png-1" title="047.png" class="embed-image" width="480" height="243" />
+    </a>
+</p>
+  <p>KWICビューのCenterカラムヘッダをクリックすると、Centerに現れる動詞を昇順・降順で
+ソートすることができます。
+</p>
+  <p>
+    <strong>なお、作成した検索条件やKWICデータは、データベースに保管されるわけではありません。
+ファイルにセーブしたりエクスポートを行わなければ、プログラム終了とともに失われてしまいます。
+</strong>
+  </p>
+  <hr />
+  <ol id="footnote" class="footnote">
+    <li id="_fn_note-1">
+      <a class="footnote-revref footnote-counter" href="#_fn_ref-1">*1</a>旧ChaKiではコーパスに合わせて不要なカラムを非表示にできましたが、ChaKi.NETではまだ対応していません。</li>
+  </ol>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <h3 id="h3-.E3.82.A2.E3.83.8E.E3.83.86.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3.E3.81.A8.E3.81.97.E3.81.A6.E8.A6.8B.E3.81.9F.E6.96.87.E7.AF.80.E3.83.BB.E4.BF.82.E3.82.8A.E5.8F.97.E3.81.91">アノテーションとして見た文節・係り受け</h3>
+  <p>Dependencyパネルで編集する文節・係り受けは、文内の局所的な構造ですが、
+これらは内部的にはDocumentに対するアノテーションの一種として表現されます。
+</p>
+  <p>ChaKi.NETでのアノテーションスキーマは、SLAT2との互換を図る目的で共通化されています。
+すなわち、基本的には
+</p>
+  <ol>
+    <li>文字集合としての<strong>Document</strong>
+</li>
+    <li>アノテーション作業の対象となるDocumentの集合である<strong>DocumentSet</strong>
+</li>
+    <li>Document内の[開始文字位置, 終了文字位置)で表される<strong>Segment</strong>とその<strong>TagSet</strong>
+</li>
+    <li>2つのSegment間の有向・無向、遷移・非遷移関連を示す<strong>Link</strong>とその<strong>TagSet</strong>
+</li>
+    <li>アノテーションの集合を表す<strong>Group</strong>とその<strong>TagSet</strong>
+</li>
+  </ol>
+  <p>の5要素で表されるスキーマに基づくアノテーションを採用しています。
+</p>
+  <p>このスキーマをChaKi.NETに適用する上で、次のような対応関係があります。
+</p>
+  <ul>
+    <li>
+      <strong>コーパス</strong>(物理的には1個のDatabase)がDocumentSetに対応します。常にコーパス全体がアノテーション対象となります。
+</li>
+    <li>CreateCorpusを実行する際にBibファイルを適用することでコーパスを複数のDocumentに分割できます。Bibファイルを適用しない場合は、コーパス全体が単一のDocumentになります。
+</li>
+    <li>
+      <strong>文節</strong>は、Segmentとして表現されます。文節のTag名は"Bunsetsu"です。従って、Documentは重なりのない連続する"Bunsetsu" Segment群によってすべて覆われています。
+</li>
+    <li>
+      <strong>文</strong>は、アノテーションではなく、特別な構造として表現されます。
+</li>
+    <li>
+      <strong>語</strong>は、アノテーションではなく、特別な構造として表現されます。
+</li>
+    <li>文末には、ダミーの "Bunsetsu" Segment (Length=0)が存在します。
+</li>
+    <li>"Bunsetsu" Segment の両端は、語境界のみに存在することができます。
+</li>
+    <li>
+      <strong>係り受け</strong>は、"Bunsetsu" Segment 間の有向・非遷移的Linkとして表されます。
+</li>
+    <li>係り受けLinkのTagは、"D", "O"などCabochaの分類に基づきます。
+</li>
+    <li>"Bunsetsu"や"D"などのTagを定義するTagSetは、CreateCorpus実行時にDB内に既定のものが自動生成されます。将来的には既定のTag以外を自由にTagSetに追加できるようにする予定です。
+</li>
+  </ul>
+  <p>つまり、文と語の構造により表現されるDocument構造に対してさらに文節・係り受け構造を
+持たせるのではなく、一方で文と語の構造を保ちつつ、他方Documentをシーケンシャルな文字列で捉え直し、
+その上に文節(Segment)と係り受け(Link)をアノテーションとして付与する、という方法を取っています。
+</p>
+  <h3 id="h3-.E6.96.87.E7.AF.80.E3.83.BB.E4.BF.82.E3.82.8A.E5.8F.97.E3.81.91.E4.BB.A5.E5.A4.96.E3.81.AE.E3.82.A2.E3.83.8E.E3.83.86.E3.83.BC.E3.82.B7.E3.83.A7.E3.83.B3">文節・係り受け以外のアノテーション</h3>
+  <p>このように、Dependencyパネルは、Segment等を上記の制約を満たしながら編集する一種のアノテーションツールとみなすことができます。そのように見た場合、Dependencyパネルを通じて係り受け以外の<strong>文内の</strong>アノテーション作業も行うというのは自然な拡張の方向であると言えます。<br />（文をまたぐSegment, Linkもスキーマ定義上は十分可能ですが、Dependencyパネルでの編集対象外であり、他の手段で編集するものと考えます。）
+</p>
+  <p>Dependencyパネルでは、係り受け以外の一般的なアノテーションとして、現在のところ下記のものが可能です。
+</p>
+  <ul>
+    <li>文の一部の語群をSegmentとマークし、「埋め込み(Nest)」タグを付与する。<br />副文、引用、注釈などをマークするのに使用します。
+</li>
+    <li>文の一部の語群をSegmentとマークし、「並列(Parallel)」「同格(Apposition)」タグを付与したうえで、複数のParallel SegmentまたはApposition Segment同士をGroup化する。<br />並列句・同格句をマークするのに使用します。
+</li>
+  </ul>
+  <p>これらのアノテーションの方法については次節で説明します。
+</p>
+  <h3 id="h3-.E3.82.B3.E3.83.A1.E3.83.B3.E3.83.88.E3.81.A8.E5.B1.9E.E6.80.A7.28Attribute.29">コメントと属性(Attribute)</h3>
+  <p>アノテーションは、Segment, Link, Groupのアノテーションインスタンスを生成し、同時にTagへの参照をそれに結び付けることで行われますが、このアノテーションインスタンスにはTag参照以外にもいくつか編集可能な項目が付属しています。
+</p>
+  <ol>
+    <li>コメント<br />コメントはSegment, Link, Groupのインスタンスに付加できる任意の文字列です。DB内ではLarge Object Blockとして格納されます。
+</li>
+    <li>属性(Attribute)<br />属性はキーと値のペア（いずれも255文字以下の文字列）の集合で、Segment, Link, Groupのインスタンスに付加できます。個々の属性ペアにコメントを付加することもできます。ただし現在のところ、これを付加する操作は実装されていません。
+</li>
+  </ol>
+  <p>なお、ChaKi.NETには、DocumentおよびLexemeにも属性(Attribute)と呼ぶキー・値ペアが付属しますが、これらはアノテーション属性の一種ではありません。Document属性は、各Sentenceからマップされる書誌(Bib)情報を指すものであり、またLexeme属性は、語彙の内容(Lexeme Properties)を指します。</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>概要</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <p>"Dependency"パネルでは、文節・係り受けの編集だけでなく、形態素構造の編集も可能です。
+</p>
+  <h2 id="h2-1..20.E8.BE.9E.E6.9B.B8.E3.81.AE.E4.BD.9C.E6.88.90.E3.81.A8.E5.8F.82.E7.85.A7.E8.A8.AD.E5.AE.9A">1. 辞書の作成と参照設定</h2>
+  <p>コーパス内に存在する語(Lexeme)はChaSenやMecab出力からインポートを行ったときに見つかった語しか含んでいませんので、それだけだと満足な形態素の修正を行うには不足します。そこで、ほとんどの場合、最初に「辞書」を作成して参照するように設定する作業が必要となります（必須というわけではありません）。
+</p>
+  <p>辞書の作成については、別項目"<a href="辞書を作成する.html">辞書を作成する</a>"を参照して下さい。ここでは、例えば"UniDic1312.ddb"という名称の辞書が既に作成されているとします。
+</p>
+  <p>作成した辞書を参照用に設定するには、メニューから"Options - Reference Dictionary Setting"を選択して下さい。
+次のようなダイアログが表示されます。
+</p>
+  <p>
+    <img src="img/110.png" alt="110.png" id="emb-110.png-1" title="110.png" class="embed-image" width="554" height="225" />
+</p>
+  <p>"Add..."ボタンをクリックして、"UniDic1312.ddb"ファイルの存在する場所からファイルを選択します。
+</p>
+  <p>
+    <img src="img/111.png" alt="111.png" id="emb-111.png-1" title="111.png" class="embed-image" width="554" height="225" />
+</p>
+  <p>この操作を繰り返して、複数の辞書を同時に参照するように設定することもできます。行ヘッダをクリックして"Delete"ボタンをクリックすると辞書参照を解除することができます。なお、今のところ辞書は"ReadOnly"でのみ参照可能です。
+</p>
+  <p>設定が完了したら"OK"ボタンをクリックします。
+</p>
+  <div class="indent">（注意）編集対象のコーパスの用いている品詞体系(POS, CType, CForm)と異なる辞書を参照すると、コーパス内に複数の品詞体系ができてしまうことになります。元の形態素解析を行ったときに使用した辞書と同じ系統の辞書を選択することを推奨します。
+</div>
+  <h2 id="h2-2..20Dependency.E3.83.91.E3.83.8D.E3.83.AB.E3.82.92.E4.BD.BF.E3.81.A3.E3.81.9F.E5.BD.A2.E6.85.8B.E7.B4.A0.E7.B7.A8.E9.9B.86">2. Dependencyパネルを使った形態素編集</h2>
+  <p>基本的なパネルのユーザーインターフェイスは文節・係り受け編集の場合と同じです。
+</p>
+  <h3 id="h3-.281.29.20.22Morphemes.22.E8.A1.A8.E7.A4.BA.E3.81.AB.E5.88.87.E3.82.8A.E6.9B.BF.E3.81.88.E3.82.8B">(1) "Morphemes"表示に切り替える</h3>
+  <p>Dependencyパネルのツールバーから、<img src="img/067.png" alt="067.png" id="emb-067.png-1" title="067.png" class="embed-image" width="25" height="25" />ボタンをクリックして"Morphemes"表示に切り替えます。
+この表示モードにおいても、文節・係り受けの編集機能は"Horizontal"の場合と同様に使用することができます。
+</p>
+  <div class="indent">注）文節・係り受け編集操作、形態素編集操作、Annotation操作はすべてここに表示される文に対して実行される「コマンド」という形で抽象化されており、すべてのコマンドは対等です。表示モードに応じて使えるコマンドに多少違いがあるというだけにすぎません。Undo/Redoは表示モードによらず、コマンド単位で行われます。
+</div>
+  <h3 id="h3-.282.29.20.E8.AA.9E.E3.82.92.E6.8E.A5.E5.90.88.E3.81.99.E3.82.8B.EF.BC.88.E8.AA.9E.E5.A2.83.E7.95.8C.E3.82.92.E5.89.8A.E9.99.A4.E3.81.99.E3.82.8B.EF.BC.89">(2) 語を接合する（語境界を削除する）</h3>
+  <p>語Boxの間に表示される"＋"ボタンをクリックすることで、隣り合った2語を接合することができます。文節を接合するための"+"ボタン（語Boxの外にある）と取り違えないように注意して下さい。接合した結果できる語は、この時点では形態素が正しくアサインされない不完全な状態であり、背景が赤色の状態で表示されます。正しい形態素にするには(4)のLexemeのアサインを行います。
+</p>
+  <div class="indent">PartOfSpeechが"Unassigned"（予約品詞）である場合に不完全な語であるとみなしています。編集結果のセーブ時に不完全な語が含まれていると警告が表示されます。
+</div>
+  <p>なお、文節をまたがる語は作れませんので、文節をまず接合してから語を接合します。
+</p>
+  <h3 id="h3-.283.29.20.E8.AA.9E.E3.82.92.E5.88.86.E5.89.B2.E3.81.99.E3.82.8B.EF.BC.88.E8.AA.9E.E5.A2.83.E7.95.8C.E3.82.92.E4.BD.9C.E6.88.90.E3.81.99.E3.82.8B.EF.BC.89">(3) 語を分割する（語境界を作成する）</h3>
+  <p>語を分割するには、語Boxの文字の間にマウスカーソルを移動して、カーソルが<img src="img/113.png" alt="113.png" id="emb-113.png-1" title="113.png" class="embed-image" width="32" height="32" />の形に変わった状態で左クリックします。
+(2)と同様、分割されてできた2つの語は不完全な状態であるため、続いてLexemeのアサインを行います。
+</p>
+  <h3 id="h3-.284.29.20.E8.AA.9E.E3.81.AB.E5.AF.BE.E3.81.97.E3.81.A6Lexeme.E3.82.92.E3.82.A2.E3.82.B5.E3.82.A4.E3.83.B3.E3.81.99.E3.82.8B.EF.BC.88.E9.96.A2.E9.80.A3.E4.BB.98.E3.81.91.E3.82.8B.EF.BC.89">(4) 語に対してLexemeをアサインする（関連付ける）</h3>
+  <p>語の持つ形態素情報であるLexemeを変更する（(2), (3)で一時的にできた不完全な語に辞書からLexemeをアサインするのもこの特殊な場合です）には、語Boxの中でマウスを左クリックします。すると、Lexemeの候補一覧を示すダイアログが表示されます。この時に、上で参照設定した辞書が使用されます。
+</p>
+  <p>
+    <img src="img/112.png" alt="112.png" id="emb-112.png-1" title="112.png" class="embed-image" width="792" height="366" />
+</p>
+  <p>この表には、コーパス本体のLexiconと参照設定した辞書のすべてから、選択した語の表層形と一致するLexemeを検索した結果（候補一覧）が表示されています。背景が灰色はコーパス本体にあるもの、青は参照用辞書にあるもの、白は形態素編集過程で新たに発生したものを示します。白の行のみは編集可能です。
+</p>
+  <ul>
+    <li>候補は品詞によりソートされて表示されます。
+</li>
+    <li>基本9プロパティが一致する語は同じ語であるとみなし、最初に見つかった候補のみが表示されます。その際、コーパス本体にあるものが参照辞書に優先され、参照辞書間では上に登録されたものが優先されます。
+</li>
+  </ul>
+  <p>背景が白の行は、新語を登録するのに使うことができます。
+</p>
+  <ul>
+    <li>PartOfSpeech, CForm, CTypeの各セルについては、マウスの<strong>右</strong>クリックを行うことにより、リストから選択することができます。
+</li>
+    <li>PartOfSpeech, CForm, CTypeを独自に入力することもできます。その場合、コーパスのLexiconにそれらのタグが自動追加されます。
+</li>
+    <li>Surfaceは編集不可です。
+</li>
+  </ul>
+  <p>行のヘッダをクリックするか、セルを選択して"OK"ボタンをクリックすることにより選択行の候補が選ばれて、元の語に関連付けられます。Escまたは"Cancel"ボタンで操作をキャンセルしてDependencyパネルに戻ることができます。
+</p>
+  <p>なお、参照用辞書の候補を選択すると、そのLexemeはコーパスのLexicon内にコピーされます。
+</p>
+  <hr />
+  <p>以上の3つの操作と、必要に応じて文節に対する操作を適宜組み合わせることにより、任意の形態素構造に変形することが可能です。
+</p>
+  <p>分割・接合を繰り返したり新語の登録をUndoしたりすることにより、最終的な結果には無関係の過渡的なLexemeが発生しますが、これらはセーブ実行時にクリーンアップされます。すなわち、セーブまでの一連の操作に関係した全Lexemeについて、最終的に語にアサインされていないもの（かつ、他のLexemeのBaseになっていないもの）は自動的にDBから削除されます。
+また、一連の操作に関係した全Lexemeの頻度情報(Frequency)もセーブ時に再計算されます。（候補一覧ダイアログに表示されるFrequencyは操作を始める前のものであり、操作の影響を反映しません。）
+</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
