@@ -135,7 +135,8 @@ SegmentとLinkによる表現形式に変更されました。
     $('#toc').jstree({
 'core' : {
   'data' : {
-    'url' : './_toc.json'
+      'url' : 'toc.html',
+      'data' : function (node) { return { 'id' : node.id }; }
   }
 }
 });
