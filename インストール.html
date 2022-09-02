@@ -59,18 +59,8 @@
   <div id="main">
     <article>
 <div class="wiki-content">
-  <h3 id="h3-.NET.20Framework.204.x.E3.81.AE.E3.82.A4.E3.83.B3.E3.82.B9.E3.83.88.E3.83.BC.E3.83.AB">.NET Framework 4.xのインストール</h3>
-  <p>ChaKi.NETは、Windows XP, Vista, 7, 8, 8.1, 10 上にインストールすることができます。
-XPの場合は、Service Pack 2を当てた上で、.NET Framework 4.0の再頒布可能パッケージをインストールしてください。
-（参考：.NET Frameworkのダウンロード先：<a href="http://msdn.microsoft.com/ja-jp/netframework/aa569263%EF%BC%89" class="external" rel="nofollow">http://msdn.microsoft.com/ja-jp/netframework/aa569263）</a>
-Vista以降の場合、Windows Updateを行っていれば通常Version 4.0以降の.NET Frameworkが含まれています。
-そうでない場合（ChaKiインストールの最初にチェックされます）、Version 4.5.2または4.6を
-選んでインストールしてください。
-Windows 10には、.NET Framework 4.6が含まれているため、このステップは不要となります。
-</p>
-  <h3 id="h3-.21ChaKi.NET.E6.9C.AC.E4.BD.93.E3.81.AE.E3.82.A4.E3.83.B3.E3.82.B9.E3.83.88.E3.83.BC.E3.83.AB">ChaKi.NET本体のインストール</h3>
-  <p>ダウンロードページより、Setup.msiファイルをダウンロードし、ダブルクリックにより
-本体のインストールを開始します。<br />
+  <h3 id="h3-.21ChaKi.NET.E6.9C.AC.E4.BD.93.E3.81.AE.E3.82.A4.E3.83.B3.E3.82.B9.E3.83.88.E3.83.BC.E3.83.AB">ChaKi.NET lite本体のインストール</h3>
+  <p>リリースページより ChaKiNetLiteSetup64.msi ファイルをダウンロードし、ダブルクリックにより本体のインストールを開始します。<br />
 <img src="img/001.png" alt="001.png" id="emb-001.png-1" title="001.png" class="embed-image" width="513" height="419" /><br />
 この画面で、「次へ」を選択します。
 <img src="img/002.png" alt="002.png" id="emb-002.png-1" title="002.png" class="embed-image" width="513" height="419" /><br />
@@ -79,35 +69,13 @@ Windows 10には、.NET Framework 4.6が含まれているため、このステ�
 「次へ」を選択します。
 <img src="img/004.png" alt="004.png" id="emb-004.png-1" title="004.png" class="embed-image" width="513" height="419" /><br />
 以上でインストールは完了です。<br />
-次のような画面が出た場合は、既に同じバージョンのChaKi.NETがインストールされていますので、
-Setup.msiファイルが最新のものであることを確認し、画面を閉じるか、または「修復」を選択して
+次のような画面が出た場合は、既に同じバージョンのChaKi.NET liteがインストールされていますので、
+ChaKiNetLiteSetup64.msiファイルが最新のものであることを確認し、画面を閉じるか、または「修復」を選択して
 再インストールを行います。<br />
 <img src="img/005.png" alt="005.png" id="emb-005.png-1" title="005.png" class="embed-image" width="513" height="419" /><br />
 「既に同じアプリケーションがインストールされています」というメッセージが出た場合は、
-コントロールパネルの「アプリケーションの追加と削除」からChaKi.NETをアンインストールし、
+コントロールパネルの「アプリの追加と削除」からChaKi.NET liteをアンインストールし、
 再インストールを行ってください。
-<br />
-一旦インストールを行っているマシンに新しいバージョンを入れ直す場合は、最新のzip版を
-/Program Files/NAIST/ChaKi.NET/ 以下にコピーしてモジュールを直接上書きする方法もあります。
-</p>
-  <h3 id="h3-MySQL.E7.AD.89.E3.81.AE.E3.82.A4.E3.83.B3.E3.82.B9.E3.83.88.E3.83.BC.E3.83.AB">MySQL等のインストール</h3>
-  <p>MySQLをサーバとして使用する場合は、MySQLを別途インストールする必要があります。
-SQLiteのみを用いる場合は、DBサーバのインストールは不要です。<br />
-※動作確認は、MySQL Community Server Version 5.0.37で行っています。<br />
-※SQL Express, PostgreSQLは、現在のところ正規表現を用いた検索ができません。
-</p>
-  <p>MySQLのインストール時に、UTF-8を使用する設定にする必要があります。
-</p>
-  <p>インストールディレクトリの設定ファイル"my.ini"中で、
-</p>
-  <pre>[mysqld]
-default-character-set=utf8
-
-[mysql]
-default-character-set=utf8
-</pre>
-  <p>として、サービスを再起動します。
-なお、Databaseを既に間違ったエンコードで作成していた場合、上書き再作成してもエンコードは変更されません。一旦DatabaseをDropするか、別名で新規に作成して下さい。</p>
 </div>
         <hr>
         <div id="topic_footer">
