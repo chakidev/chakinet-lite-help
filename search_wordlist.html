@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>ワードリスト検索を行う（WordList）</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <p>ChaKi.NETの持つ検索機能には、ここまで説明したKWICの形で結果を得るものだけでなく、
+条件にマッチする語のリストの形で結果を得る機能もあります。
+これをWordListと呼びます。
+</p>
+  <h4 id="h4-.21WordList.E6.A4.9C.E7.B4.A2.E6.9D.A1.E4.BB.B6.E3.81.AE.E4.BD.9C.E6.88.90">WordList検索条件の作成</h4>
+  <p>WordListの検索条件は、TagSearch, DependencySearchとまったく同じです。
+従って、条件の作成方法もそれらと同じようにSearchConditionパネルの対応する
+タブの中で行います。
+</p>
+  <ul>
+    <li>SentenceSearchは語を意識しない検索ですので、その検索条件を
+WordListの検索条件として使うことはできません。
+</li>
+  </ul>
+  <h4 id="h4-.21WordList.E3.81.AE.E5.AE.9F.E8.A1.8C">WordListの実行</h4>
+  <p>KWIC検索と異なり、Commandパネルの"<strong><a href="WordList.html">WordList</a></strong>"ボタンを使用します。
+</p>
+  <ul>
+    <li>WordListでは絞り込み検索はできません。（常に新規検索となります。）
+</li>
+  </ul>
+  <p>例として、コーパス中で、「三四郎」の直後に現れる助詞をリストすることを考えます。
+</p>
+  <p>Tag条件タブを使用し、次のような検索条件を作成します。
+</p>
+  <p>
+    <img src="img/054.png" alt="054.png" id="emb-054.png-1" title="054.png" class="embed-image" width="414" height="187" />
+</p>
+  <p>中心語を助詞の方に設定していることに注意してください。WordListでリストされるのは
+中心語のみですので、この例で1語に絞られる「三四郎」の方を中心語にする意味はありません。<br />
+※ なお、現在(2009/09/24)共起語をすべてリストする仕様に移行中です。
+</p>
+  <p>この条件でWordListを実行すると、ビューがKWICからWordListに切り替わり、この条件に
+マッチするLexemeが異なりごとに集計され表の形で出力されます。
+</p>
+  <p>
+    <a href="img/055.png">
+      <img src="img/055.png" alt="055.png" id="emb-055.png-1" title="055.png" class="embed-image" width="480" height="215" />
+    </a>
+</p>
+  <p>各行に表示されているのがLexemeで、"Surface"～"CForm"までのカラムにはLexemeの属性が
+表示されています。これによりLexemeを一意に識別することができます。
+</p>
+  <p>次のカラム"sanshiro"は、コーパスを表しており、"sanshiro"コーパスにおける各Lexemeの
+出現数が示されています。この例ではコーパスを1つだけしか選択しませんでしたが、
+複数のコーパスを検索対象とした場合はここに複数のカラムが並び、各コーパスにおける
+出現数が横並びで表示されます。
+</p>
+  <p>"All", "Ratio"カラムは、対象としたコーパス全体での出現数とその割合（「このLexemeの出現数」／
+「マッチした全てのLexemeの出現数」）を表しており、例では"sanshiro"カラムの値と"All"の値は
+完全に同じになります。
+</p>
+  <h4 id="h4-.E3.83.AA.E3.82.B9.E3.83.88.E5.86.85.E3.81.A7.E4.BB.BB.E6.84.8F.E3.81.AELexeme.E5.B1.9E.E6.80.A7.E3.82.92.E5.90.8C.E4.B8.80.E8.A6.96.E3.81.99.E3.82.8B">リスト内で任意のLexeme属性を同一視する</h4>
+  <p>"Surface"～"CForm"の各Lexeme属性カラムのヘッダでマウスを右クリックすると、次のようなポップアップメニューが
+表示されます。
+</p>
+  <p>
+    <img src="img/058.png" alt="058.png" id="emb-058.png-1" title="058.png" class="embed-image" width="354" height="102" />
+</p>
+  <ul>
+    <li>"<strong>Compact Row</strong>"を選択すると、その属性を同一視してリストを作りなおします。
+ここで「同一視する」とは、Lexemeの同一・異なり判定を行う際に、その属性を除外して考えることを意味します。
+同一視された属性には、実際の値の代わりに"*"が表示されます。
+</li>
+    <li>"<strong>Expand Row</strong>"を選択すると、同一視していた属性を元に戻します。
+</li>
+  </ul>
+  <p>例えば、PartOfSpeech以外の属性をすべて同一視すると、品詞による異なりでグループを作成し、グループごとの
+出現数をリストすることができます。上の例でこれを行った結果を次に示します。
+</p>
+  <p>
+    <a href="img/059.png">
+      <img src="img/059.png" alt="059.png" id="emb-059.png-1" title="059.png" class="embed-image" width="480" height="121" />
+    </a>
+</p>
+  <h4 id="h4-.E3.83.AA.E3.82.B9.E3.83.88.E3.81.95.E3.82.8C.E3.81.9FLexeme.E3.81.AE.E5.87.BA.E7.8F.BE.E7.AE.87.E6.89.80.E3.82.92.E8.AA.BF.E3.81.B9.E3.82.8B">リストされたLexemeの出現箇所を調べる</h4>
+  <p>WordListの出力結果を見て、あるLexemeがどのような形で出現したかを知りたい場合があるかもしれません。
+そのような場合のために、WordListビューからKWIC検索を行う方法が提供されています。
+WordListビューの行ヘッダでマウスを右クリックすると、ポップアップメニューが表示されますので、
+"<strong>List Occurrences</strong>"を選択します（下図）。
+</p>
+  <p>
+    <img src="img/056.png" alt="056.png" id="emb-056.png-1" title="056.png" class="embed-image" width="381" height="99" />
+</p>
+  <p>その結果、元のWordList条件に対してここで選択したLexemeの属性を補足した条件が
+自動的に作成され、KWIC検索結果に切り替わります。
+</p>
+  <p>
+    <a href="img/057.png">
+      <img src="img/057.png" alt="057.png" id="emb-057.png-1" title="057.png" class="embed-image" width="480" height="214" />
+    </a>
+</p>
+  <ul>
+    <li>同一視されている属性は、自動生成される条件においても除外されます。
+</li>
+  </ul>
+  <h4 id="h4-.E3.82.B5.E3.82.A4.E3.82.BA.E3.81.AE.E5.A4.A7.E3.81.8D.E3.81.AA.E3.83.87.E3.83.BC.E3.82.BF.E3.81.AB.E5.AF.BE.E3.81.99.E3.82.8B.21WordList.E7.B5.90.E6.9E.9C.E5.8F.96.E5.BE.97.E9.80.9F.E5.BA.A6.E3.81.AE.E6.94.B9.E5.96.84.E6.96.B9.E6.B3.95">サイズの大きなデータに対するWordList結果取得速度の改善方法</h4>
+  <p>サイズの大きなデータに対してWordListを行った場合などでヒット数が多いと、徐々に
+TOTALの再計算・再描画処理が重くなるため、結果を得るのに極端に時間がかかる状況になることがあります。
+</p>
+  <p>これを避けるには、WordList検索前にツールバーの <img src="img/170.png" alt="170.png" id="emb-170.png-1" title="170.png" class="embed-image" width="15" height="15" /> をクリックし、
+再計算・再描画を抑制します。結果がすべて取得された後に再度クリックすることにより
+そこで一回だけ再計算・再描画が行われ、最終調整された結果が表示されます。
+</p>
+  <p>なお、このボタンは、WordList以外の検索時にはOFFにして下さい。(KWIC Viewは
+再計算・再描画を最適化する処理を持っています。このため、抑制を解除したときに余計な
+時間がかかってしまいます。）
+</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
+      });
+    </script>
+  </body>
+</html>

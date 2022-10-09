@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>インストール</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <style>img {margin-left:30px;}</style>
+  <h3>ChaKi.NET lite本体のインストール</h3>
+  <p>ブラウザで<a href="https://github.com/chakidev/chakinet-lite">GitHubのChaKi.NET liteサイト</a>を開き、ページ右側の"Releases"リンクをクリックします。<br/>
+    <img src="img/fig010.png" width="400">
+  </p>
+  <p>"Releases"タブまたは"Tags"タブに表示される最新のバージョンを選択し、クリックします。（下図は"Releases"タブを選択した状態を示します。）<br/>
+    <img src="img/fig011.png" width="400">
+  </p>
+  <p>"Assets"グループの下にある"ChaKiNetLiteSetup64.msi"をクリックします。ブラウザによるダウンロードが開始されます。<br/>
+    <img src="img/fig012.png" width="400">
+  </p>
+  <p>Windows OSによる実行確認ダイアログが表示されるので、"詳細情報"をクリックします。<br/>
+    <img src="img/fig001.png" width="400">
+  </p>
+  <p>"実行"ボタンをクリックします。<br/>
+    <img src="img/fig002.png" width="400">
+  </p>
+  <p>再度OSによるインストール確認ダイアログが表示されるので、"インストールする"ボタンをクリックします。<br/>
+    <img src="img/fig003.png" width="400">
+  </p>
+  <p>インストーラーが起動し、手順を示すダイアログが表示されます。"次へ"ボタンをクリックします。<br/>
+    <img src="img/fig004.png" width="400">
+  </p>
+  <p>"次へ"ボタンをクリックします。<br/>
+    <img src="img/fig005.png" width="400">
+  </p>
+  <p>"次へ"ボタンをクリックします。この後、Windows OSによる全画面の確認ダイアログが表示されることがありますが、"許可する/はい"をクリックします。<br/>
+    <img src="img/fig006.png" width="400">
+  </p>
+  <p>インストールが終わると下記の終了メッセージが表示されますので、"閉じる"ボタンをクリックします。<br/>
+    <img src="img/fig008.png" width="400">
+  </p>
+  <p>インストールに成功していれば、デスクトップおよびWindowsスタートメニューのアプリ一覧に下図のChaKi.NETliteのアイコンが追加されています。アイコンまたはメニューをクリック（ダブルクリック）することでChaKi.NET liteアプリケーションを起動することができます。<br/>
+    <img src="img/fig009.png" width="100">
+  </p>
+  <p>（注）「既に同じアプリケーションがインストールされています」というメッセージが出た場合は、Windowsの設定の「アプリ&gt;インストールされているアプリ」またはコントロールパネルの「アプリの追加と削除」からChaKi.NET liteをアンインストールし、再インストールを行ってください。
+  </p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+    <script src="./helper.js"></script>
+  </body>
+</html>

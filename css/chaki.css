@@ -1,6 +1,5 @@
 BODY {
        background-color: #ffffff;
-       align:left;
        font-weight: normal;
        font-size: 11pt;
        }
@@ -29,14 +28,17 @@ h3 {
        background-color: #ccccff;
        font-weight: bold;
        font-size: 11pt;
-       font-height: 11pt;
 }
 
 h4 {
        background-color: #ccccff;
        font-weight: bold;
        font-size: 10pt;
-       font-height: 10pt;
+}
+
+p {
+	margin-top: 10px;
+	line-height:150%;
 }
 
 li {
@@ -102,7 +104,6 @@ DIV {
 ADDRESS {
        font-weight: normal;
        font-size: 10pt;
-       font-height: 10pt;
        font-family: helvetica;
 }
 

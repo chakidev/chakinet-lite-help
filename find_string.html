@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="favicon.ico"/>
-    <title>概要</title>
+    <title>Kwic画面で簡易文字列検索を行う</title>
     <meta name="description" content="" />
     <meta name="keywords" content="">
 
@@ -31,7 +31,7 @@
 
 <body class="md-nav-expanded">
   <header class="headroom">
-    ChaKi.NET lite ヘルプ
+    ChaKi.NET Lite ヘルプ
   </header>
 
   <nav id="panel-left" class="md-nav-expanded">
@@ -59,8 +59,19 @@
   <div id="main">
     <article>
 <div class="wiki-content">
-  <p>ChaKi.NETは、自然言語資料（コーパス）をRelational Databaseを用いて管理・編集・検索するためのツールです。</p>
-  <p>本ソフトウェア<B>ChaKi.NET lite</B>は、UD(Universal Dependency) Corpus の検索を主な用途としてChaKi.NETの機能を軽量化したものです。</p>
+  <p>KwicViewに表示されている表層文字列から任意の文字列を検索することができます。
+ツールバーの下記のエディットボックスに検索したい文字列を入力して、隣の"Search in View"ボタンを
+クリックして下さい。（または、エディットボックスにフォーカスがある状態でF3キーを押します。）
+</p>
+  <p>
+    <img src="img/137.png" alt="137.png" id="emb-137.png-1" title="137.png" class="embed-image" width="157" height="44" />
+</p>
+  <p>押すたびにカーソル位置以降のマッチする文字列がハイライト（選択）状態となります。
+今のところ逆方向の検索はできませんが、末尾に到達すると先頭からもう一度検索することができます。
+</p>
+  <ul>
+    <li>文をまたがる文字列にはマッチしません。</li>
+  </ul>
 </div>
         <hr>
         <div id="topic_footer">

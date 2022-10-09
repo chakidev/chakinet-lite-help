@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>コーパス情報を表示する</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <p>条件パネルの"Corpus"タブにおいて、一つのコーパスを選択状態にして"Show"ボタンをクリックすると、そのコーパスの基本的な統計情報や語彙リスト等を表示することができます。
+</p>
+  <p>
+    <img src="img/093.png" alt="093.png" id="emb-093.png-1" title="093.png" class="embed-image" width="679" height="434" />
+</p>
+  <p>"Corpus Information"ダイアログは、4つのタブに分かれ、それぞれ下記のような情報が含まれています。（Lexiconのロードに多少時間がかかります。）
+</p>
+  <table class="wikitable">
+    <tbody>
+      <tr>
+        <td>Tab</td>
+        <td>項目</td>
+        <td>内容</td>
+      </tr>
+      <tr>
+        <td>Summary</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>SchemaVersion</td>
+        <td>DB全体のスキーマバージョン</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Name</td>
+        <td>DBの名称（SQLiteの場合は拡張子を除くファイル名と一致）</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>DBType</td>
+        <td>DBMSの名称: SQLite/MySQL/PostgreSQL/SQLExpress</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Path</td>
+        <td>SQLiteの場合、DBファイルのパス</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Server</td>
+        <td>SQLite以外の場合、サーバ名</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Login</td>
+        <td>SQLite以外の場合、サーバへのログイン名</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Password</td>
+        <td>SQLite以外の場合、サーバへのログインパスワード（見えません）</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>#Documents</td>
+        <td>コーパスに含まれるDocument数</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>#Words</td>
+        <td>語数</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>#Lexemes</td>
+        <td>語彙数（異なり）</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>#Sentences</td>
+        <td>文の数</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>#Segments</td>
+        <td>Segmentインスタンスの数</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>#Links</td>
+        <td>Linkインスタンスの数</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>#Groups</td>
+        <td>Groupインスタンスの数</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>LexiconID</td>
+        <td>コーパス作成時に使用した語彙のID（内部的に使用される）</td>
+      </tr>
+      <tr>
+        <td>Documents</td>
+        <td></td>
+        <td>コーパスに含まれるDocumentおよびテキスト先頭部分の一覧</td>
+      </tr>
+      <tr>
+        <td>Lexicon</td>
+        <td></td>
+        <td>コーパスに含まれる語彙の一覧</td>
+      </tr>
+      <tr>
+        <td>Tags</td>
+        <td></td>
+        <td>コーパスに定義されているTagSet（現状ではデフォルトのID=0のTagSetを表示）</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Segment</td>
+        <td>Segment Tag一覧</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Link</td>
+        <td>Link Tag一覧</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Group</td>
+        <td>Group Tag一覧</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
+      });
+    </script>
+  </body>
+</html>

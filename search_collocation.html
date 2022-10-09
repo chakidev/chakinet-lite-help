@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>取得したKWICデータに対する統計を取る（Collocation）</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <p>ChaKi.NETでは、文内の語や語群の生起情報に関して以下の各アルゴリズムによる
+統計を取ることができます。
+</p>
+  <ol>
+    <li>Raw Frequency
+</li>
+    <li>MI (Mutual Information) Score
+</li>
+    <li>N-gram
+</li>
+    <li>FSM (Frequent Sequence Mining)
+</li>
+  </ol>
+  <p>これらの統計は常にKWICリストに対して行われる点に注意が必要です。つまり、メモリ上に
+配置されているデータに対してのローカルな統計処理であり、DBクエリによる他の検索処理とは
+性格が異なっています。（コーパスに存在するすべての文に対して統計を取るためには
+全文検索を行ってその結果に対して処理を行えばよいのですが、この方法はコーパスのサイズに
+よってはメモリ不足となる可能性が高くなります）。
+</p>
+  <p>まず、Collocation処理の（アルゴリズムによらない）共通手順を説明します。
+</p>
+  <ul>
+    <li>まず、検索によりKWICリストを生成します（省略）。<br />
+全文検索結果の場合は、文の内容がすべてRight（右文脈）に入ったKWICリストとみなされます。
+</li>
+  </ul>
+  <ul>
+    <li>Search Conditionsパネルにおいて、<strong>Collocation</strong>タブに移ります（下図）。
+</li>
+  </ul>
+  <p>
+    <a href="img/022.png">
+      <img src="img/022.png" alt="022.png" id="emb-022.png-1" title="022.png" class="embed-image" width="480" height="144" />
+    </a>
+</p>
+  <ul>
+    <li>このタブの中でCollocationパラメータを設定します。最初に使用したいアルゴリズムを"<strong>Type of Statistics</strong>"ドロップダウンリストから選択します。これ以外のパラメータの意味はアルゴリズム毎に異なりますので次節以降で説明します。
+</li>
+  </ul>
+  <ul>
+    <li>Commandパネルの"Collocation"ボタンを押して、処理を開始します。
+</li>
+  </ul>
+  <ul>
+    <li>ビューがGridに変わり、結果が一覧表示されます（下図は、MI Scoreの結果の例）。
+</li>
+  </ul>
+  <p>
+    <a href="img/023.png">
+      <img src="img/023.png" alt="023.png" id="emb-023.png-1" title="023.png" class="embed-image" width="480" height="315" />
+    </a>
+</p>
+  <ul>
+    <li>Collocation結果は、元データとして使用したKWICリストを親として履歴ツリーに追加されます（下図）。
+</li>
+  </ul>
+  <p>
+    <a href="img/024.png">
+      <img src="img/024.png" alt="024.png" id="emb-024.png-1" title="024.png" class="embed-image" width="207" height="111" />
+    </a>
+</p>
+  <p>次に、各アルゴリズムの詳細を説明します。
+</p>
+  <h3 id="h3-Raw.20Frequency">Raw Frequency</h3>
+  <p>KWICのCenter語を基準として、左右にオフセットした各相対位置に存在する語の頻度リストを取ります。
+この統計により、例えば「の」という語の2ワード左の位置にはどのような語が多く現れるか、といったデータを
+知ることができます。
+</p>
+  <p>
+    <a href="img/025.png">
+      <img src="img/025.png" alt="025.png" id="emb-025.png-1" title="025.png" class="embed-image" width="479" height="280" />
+    </a>
+</p>
+  <p>例えば、-5カラムの2列目が"10"であるということは、中心語から見て5語前の位置には、語「、（記号-読点）」が
+10回現れていることを示します。
+</p>
+  <p>カラムヘッダをクリックすると、そのカラムでソートすることができます。2回続けて押すと逆順にソートされます。
+</p>
+  <p>※Raw Frequencyのパラメータ
+</p>
+  <ul>
+    <li>
+      <strong>語のターゲット属性</strong>
+      <br />
+"<strong>Target Attributes</strong>"リストボックスで、Collocation処理において考慮に入れる語属性と無視する語属性を
+指定します。リストボックスは複数選択可能で、選択された語属性は、語の一致比較で使用されますが、
+選択解除された語属性は一致比較で無視されます。<br />
+<a href="img/026.png"><img src="img/026.png" alt="026.png" id="emb-026.png-1" title="026.png" class="embed-image" width="330" height="140" /></a><br />
+結果のCollocation Viewにおいても、無視された語属性のカラムは非表示となります。
+</li>
+  </ul>
+  <ul>
+    <li>
+      <strong>左右文脈範囲</strong>
+      <br />
+"<strong>Window Size L</strong>", "<strong>R</strong>"の２つのボックスに左右それぞれの方向に調べるべきオフセットの最大値を指定します。
+例えば、L=2, R=3 とすると、-2～+3の範囲で頻度を調べます。
+</li>
+  </ul>
+  <h3 id="h3-MI.20Score">MI Score</h3>
+  <p>ある語 n が中心語cの周囲一定のウィンドウ・スパンに出現する頻度(Fn,c)、
+その中心語 n のコーパス全体での総出現頻度(Fn)、
+およびその語 c のコーパス全体での総出現頻度(Fc)とを元に、
+語の共起に関する各種統計情報量を算出します。
+</p>
+  <div class="indent">- 相互情報量(MI) Score<br />
+</div>
+  <div class="indent">
+    <div class="indent">
+      <img src="img/027.png" alt="027.png" id="emb-027.png-1" title="027.png" class="embed-image" width="289" height="104" />
+      <br />
+（ここで、<em>N</em>=コーパスの総語数; <em>S</em>=ウィンドウ・スパンのサイズ）
+</div>
+  </div>
+  <div class="indent">- MI3 Score
+</div>
+  <div class="indent">
+    <div class="indent">
+      <img src="img/028.png" alt="028.png" id="emb-028.png-1" title="028.png" class="embed-image" width="122" height="47" />
+      <br />
+</div>
+  </div>
+  <div class="indent">- Dice Score
+</div>
+  <div class="indent">
+    <div class="indent">
+      <img src="img/029.png" alt="029.png" id="emb-029.png-1" title="029.png" class="embed-image" width="85" height="76" />
+      <br />
+</div>
+  </div>
+  <div class="indent">- Log-Log Score
+</div>
+  <div class="indent">
+    <div class="indent">
+      <img src="img/030.png" alt="030.png" id="emb-030.png-1" title="030.png" class="embed-image" width="193" height="47" />
+      <br />
+</div>
+  </div>
+  <div class="indent">- Z Score
+</div>
+  <div class="indent">
+    <div class="indent">中心語cが生起する以外の場所に共起語nが現れる確率は、<br />
+<img src="img/031.png" alt="031.png" id="emb-031.png-1" title="031.png" class="embed-image" width="148" height="47" /><br />で表されます。
+期待される共起の回数は、<br />
+<img src="img/032.png" alt="032.png" id="emb-032.png-1" title="032.png" class="embed-image" width="104" height="41" /><br />
+このpとEを用いて、Z scoreは次の式で表されます。<br />
+<img src="img/033.png" alt="033.png" id="emb-033.png-1" title="033.png" class="embed-image" width="221" height="54" /><br />
+</div>
+  </div>
+  <p>これらの統計量は、各語に対してすべて一度に計算され、１行に表示されます。
+（画面は前節にあるので省略。）
+</p>
+  <ul>
+    <li>重要なことですが、これらの共起頻度は、単一コーパスに対してしか有効ではありません。
+従って、複数のコーパスをまたがるKWIC検索結果に対して、この統計を行うことはできません。
+（これは実装上の制約です。）
+</li>
+  </ul>
+  <ul>
+    <li>中心語が中心位置に現れる場合と、その他の位置に現れる場合とは区別する必要がありますので、
+中心位置に現れた場合は、"&lt;&lt;語&gt;&gt;" のように囲って表示しています。
+</li>
+  </ul>
+  <ul>
+    <li>Fn,cは、KWICリストに現れるペアのみをカウントします。KWICリストはペア(n,c)の全ての
+出現を含んでいるとは限りません。一般には正しいFn,cはKWIC中でカウントする数よりも大きくなります。
+このように、MIスコアが共起の出現確率を反映しない場合がありますので注意が必要です。
+KWICリストを（検索条件に基づく偏った）サンプリングセットに取って近似的なMIスコアを求めていると
+解釈するべきです。
+
+</li>
+  </ul>
+  <p>※MI Scoreのパラメータ
+</p>
+  <ul>
+    <li>語のターゲット属性<br />
+Raw Frequencyの場合と同じ意味を持ちます。
+</li>
+  </ul>
+  <ul>
+    <li>
+      <strong>左右文脈範囲</strong>
+      <br />
+Fn,cを数える際に、この範囲に存在すればカウントされます。
+</li>
+  </ul>
+  <h3 id="h3-N-gram">N-gram</h3>
+  <p>n-gramには、中心語から見て左方向にサーチされる"N-gram(Left)"と右方向の"N-gram(Right)"の２種類がありますが、
+基本的なアルゴリズムは同じもので、指定した方向への拡張語列の中で、指定した頻度以上の出現回数を持つものを
+すべて求めます。
+</p>
+  <p>
+    <a href="img/034.png">
+      <img src="img/034.png" alt="034.png" id="emb-034.png-1" title="034.png" class="embed-image" width="480" height="276" />
+    </a>
+</p>
+  <p>本プログラムのN-gramアルゴリズムでは、Maximal Sequenceだけでなく、そのサブシーケンスについても、条件を
+満たす限りリストに含められます。たとえば、
+</p>
+  <pre>a b c
+a b c d
+a b c d e
+</pre>という3つの文（aが中心語）に対する右n-gramは、Maximal Sequenceとしては"a b c d"になりますが、そのサブシーケンスを含め
+<pre>a b c d (2)
+a b c (3)
+a b (3)
+</pre>の３個すべてがリストされます。（括弧内は頻度）
+<p>※<a href="N-gramアルゴリズムの詳細説明.html">N-gramアルゴリズムの詳細説明</a>
+</p><p>※N-gramのパラメータ
+</p><ul><li><strong>Min. Frequency</strong><br />
+最低この回数以上出現するN-gramのみを求めます。1回しか現れないシーケンスは処理内で無視していますので、
+この回数は 2 以上が有効です。それ以下の値は2と同じ意味を持ちます。
+</li></ul><ul><li><strong>Min. Length</strong><br />
+最低この長さの語数から成るN-gramのみを求めます。
+長さのカウントには、中心語を含めます。
+0 を指定すると長さは考慮されません。
+</li></ul><p>なお、N-gramに限り、表層形のみを対象（他の属性は無視）としています。
+</p><h3 id="h3-Frequent.20Sequence.20Mining.20.28FSM.29">Frequent Sequence Mining (FSM)</h3><p>このアルゴリズムは他と異なり、KWICに対する共起統計ではなく、文集合に対する頻出語列（パターン）のマイニングを行うものです。
+元となるKWICの文脈情報(Left,Center,Rightの区切り）は使用しません。
+</p><p>本アルゴリズムは、工藤さんのprefix-span(<a href="http://chasen.org/~taku/software/prefixspan/" class="external" rel="nofollow">http://chasen.org/~taku/software/prefixspan/</a> )を元にしています。
+prefix-spanに加え、
+</p><ol><li>Maximal Sequenceのみを求める
+</li><li>Gap条件を加味する
+</li></ol><p>という２点の拡張を行っています。
+第１点については、N-gramの節で説明したものと同じ概念であり、FSMでは他系列を含むような最大のパターンのみを求めます。<br />
+第２点は、必ずしも連続して現れる語のシーケンスではなく、間に不特定の語列を指定した長さ・回数だけ含むような
+「飛び石パターン」を求めることができることを意味します。
+</p><p><a href="img/035.png"><img src="img/035.png" alt="035.png" id="emb-035.png-1" title="035.png" class="embed-image" width="480" height="277" /></a>
+</p><p>Sequenceカラムがパターンを表しています。"[...]"で区切られた部分が連続パターンを表します。
+例えば次の
+</p><pre>[ 広田 ] [ は ]
+</pre>は、Gapが1つ存在するようなパターンを意味します。
+<p>"IDs"カラムは、そのパターンが出現している文のIDをカンマ区切りで示す文字列です。
+</p><p>※<a href="FSMアルゴリズムの詳細説明.html">FSMアルゴリズムの詳細説明</a>
+</p><p>※FSMのパラメータ
+</p><ul><li><strong>語のターゲット属性</strong><br />
+Raw Frequencyの場合と同じ意味を持ちます。
+</li></ul><ul><li><strong>Min. Frequency</strong><br />
+最低この回数以上出現するパターンのみを求めます。
+</li></ul><ul><li><strong>Min. Length</strong><br />
+最低この長さの語数から成るパターンのみを求めます。
+</li></ul><ul><li><strong>Max Gap Width</strong><br />
+Gapとして許される不特定語の数を指定します。例えば"2"であれば、2語までの不特定語を挟むようなパターンを許します。<br />
+0を指定するとGapを含まない指定となります。-1を指定すると無制限に長いGapを持つことが可能です。
+</li></ul><ul><li><strong>Num of Gaps</strong><br />
+パターンが含んでもよいGap数を指定します。（次項と合わせ、最大値または特定値の意味となります。）
+0を指定するとGapを含まない指定となります。-1を指定するとGap数は無制限となります。
+</li></ul><ul><li><strong>Exact Match</strong><br />
+チェックを入れると、前項の"Num of Gaps"が正確にその数だけ出現するパターンのみを求めます。チェックを
+はずすと、Num of Gaps以下の数のGapを含むパターンを求めます。
+</li></ul><ul><li><strong>Stopwords</strong><br />
+パターンに含めたくない語の表層形を半角スペースで区切っていくつでも指定できます。
+StopwordはGap長の計算には含められます。
+</li></ul></div></BODY></HTML>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico"/>
+    <title>KwicViewを二分割表示する</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+      <!-- JsTree styles -->
+      <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+      <!-- Hnd styles -->
+      <link href="css/layout.min.css" rel="stylesheet" />
+      <link href="css/effects.min.css" rel="stylesheet" />
+      <link href="css/theme-light-blue.min.css" rel="stylesheet" />
+      <link href="css/print.min.css" rel="stylesheet" media="print" />
+      <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+      <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+      <!-- Content style -->
+      <link href="css/hnd.content.css" rel="stylesheet" />
+      <link rel='stylesheet' type='text/css' href='css/chaki.css'>
+</head>
+
+<body class="md-nav-expanded">
+  <header class="headroom">
+    ChaKi.NET Lite ヘルプ
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close">
+        <button class="hnd-toggle btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      <li role="presentation" class="tab active">
+        <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+          <i class="glyphicon glyphicon-list"></i>
+          Contents
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"></div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main">
+    <article>
+<div class="wiki-content">
+  <h2 id="h2-Kwic.20View.E3.82.92.E4.BA.8C.E5.88.86.E5.89.B2.E8.A1.A8.E7.A4.BA.E3.81.99.E3.82.8B">Kwic Viewを二分割表示する</h2>
+  <p>メニュー"View" - "Split KWIC View" またはツールバー<img src="img/166.png" alt="166.png" id="emb-166.png-1" title="166.png" class="embed-image" width="16" height="16" />をクリックすると、KWIC Viewが上下２画面に分割されます。
+</p>
+  <p>２画面モード時に上下いずれかのKWIC Viewをクリックすると青い縁取りが現れます。これは、そのViewがカレントViewであることを示します。
+検索コマンドの結果はカレントViewに表示されますので、カレントを切り替えながら異なる検索条件で検索を行うと、検索結果同士を上下画面で
+比較することができます。
+</p>
+  <p>
+    <a href="img/167.png">
+      <img src="img/167.png" alt="167.png" id="emb-167.png-1" title="167.png" class="embed-image" width="480" height="189" />
+    </a>
+</p>
+  <p>真中のスプリッタ―（分割線）をマウスドラッグすることにより分割位置を調整できます。元の1画面表示に戻すにはもう一度同じコマンド/ボタンをクリックします。
+</p>
+  <p>典型的な使い方として、上のViewにProject=0の検索結果を、下のViewにProject=1の検索結果を表示することにより複数のProject内容を対比することなどが想定されています。
+</p>
+  <h3 id="h3-.E3.82.AB.E3.83.AC.E3.83.B3.E3.83.88.E8.A1.8C.E8.87.AA.E5.8B.95.E5.90.8C.E6.9C.9F.E6.A9.9F.E8.83.BD">カレント行自動同期機能</h3>
+  <p>２画面モード時に、片側のViewのカレント行（1行の全体がグレー背景になっている状態）が変更されると、その行の文番号と同一の文番号の
+行がもう一方のViewにも存在すれば、その行が自動的にカレント行となります。この時、行が見えていない状態であれば見えるようにスクロールも
+行われます。Up, Down, PageUp, PageDownキーによりカレント行を変更した場合もこの自動同期が働きます。
+</p>
+  <p>一方、この同期機能はスクロールバーを操作するだけでは動作しません。これは、文の順序が上下のViewで必ずしも一致しているとは限らないため
+（ソートを行った場合など）です。
+</p>
+  <h3 id="h3-Word.E9.96.93.E3.83.9E.E3.83.83.E3.83.94.E3.83.B3.E3.82.B0.E8.A1.A8.E7.A4.BA.E6.A9.9F.E8.83.BD">Word間マッピング表示機能</h3>
+  <p>ImportWordRelation.exe によりWord-Wordマッピングをコーパスにインポートしてある場合は、マッピングのFrom側に一致するWord上にマウスを
+置いたときにWord背景が青色となり、同時にTo側に対応するWordの背景が自動的に赤色になります。つまり、青色背景のWordから赤色背景のWordへの
+マッピングが存在することを、Word上にマウスを持っていくことにより確認することができます。
+</p>
+  <ul>
+    <li>（注意）word-wordマッピング情報は、設定ダイアログ（メニューの"Options" - "Settings"で表示されるダイアログ）の"Search"タブにおいて、"Retrieve Extra Word Info"がONになっていないと検索時に読み込まれません（デフォルトではOFF）。これは、マッピングが不要な場合の検索速度に影響を与えないようにするための措置です。（なお、時間情報もこのオプションをONにしないと読み込まれません。）<br /><a href="img/165.png"><img src="img/165.png" alt="165.png" id="emb-165.png-1" title="165.png" class="embed-image" width="480" height="345" /></a>
+</li>
+  </ul>
+  <p>下図にKwic View内でWord-Wordマッピングを表示した例を示します。
+</p>
+  <p>
+    <a href="img/164.png">
+      <img src="img/164.png" alt="164.png" id="emb-164.png-1" title="164.png" class="embed-image" width="480" height="176" />
+    </a>
+</p>
+</div>
+        <hr>
+        <div id="topic_footer">
+          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+        </div>
+      </article>
+
+      <footer></footer>
+
+    </div>
+  
+    <script src="vendors/jquery-3.5.1/jquery.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
+
+    <script>
+      $(function() {
+        $('#toc').jstree({
+          'core' : {
+            'data' : {
+              'url' : 'toc.html',
+              'data' : function (node) { return { 'id' : node.id }; }
+            }
+          }
+        })
+        .on("click", "a", function() {
+
+        document.location.href = this;
+        });;
+      });
+    </script>
+  </body>
+</html>
