@@ -60,26 +60,27 @@
   <div id="main">
     <article>
 <div class="wiki-content">
-  <p>ChaKiは、文節・係り受けを編集するための"Dependency"パネルを持っています。
-このパネルは、メニュー"View"-"DependencyEdit Panel"コマンドにより表示・非表示が切り替えられますので、
-もし"Dependency"というタイトルを持つパネルが見当たらなければ、このコマンドにより表示状態にして下さい。
+
+  <h2>指定した文内のDependencyを見る</h2>
+
+  <p>ChaKi.NET liteには、指定した文に付与されている依存情報（または文節・係り受け情報）を表示するためのDependency情報表示エリアを持っています。
+    エリア左端のタブで"Dependency"が選択されていることを確認しでください。
 </p>
-  <p>文脈を表示する操作と共通になりますが、KWIC結果ビューに表示されている任意の文において
-IndexカラムからSenカラムまでの範囲（つまり文本体が表示されていない場所）をダブルクリックすると、
-その文の文節・係り受け編集が開始されます。Dependencyパネルにはその文の文節・係り受け構造が表示されます。
-下図に例（既にCabochaによる自動解析が行われている場合）を示します。
+ <p>文脈を表示する操作と共通になりますが、KWIC結果ビューに表示されている任意の文（行）をダブルクリックすると、
+その文に付与されている依存関係がエリアに表示されます。下図に例を示します。
 </p>
   <p>
-    <img src="img/061.png" alt="061.png" id="emb-061.png-1" title="061.png" class="embed-image" width="617" height="185" />
+    <img src="img/fig161.png" class="embed-image" width="600" />
 </p>
-  <p>文はまず文節に分けられて文節Boxのリストとなっており、各文節はさらに語に分けられて
+<p>以下、UD TreebankなどCONLLベースのコーパスにおいては、文節=語と読み替えてください。</p>
+<p>文はまず文節に分けられて文節Boxのリストとなっており、各文節はさらに語に分けられて
 語Boxのリストになります。各文節Boxからは必ず１つの係り受け矢印が出ており、他の文節Boxに
 入っています。赤い文字の語BoxはKWICの中心語を示しています。
 なお、文末に存在する空白のBoxはダミーの文節Boxであり、各文に自動的に挿入されて
-係り先のない文節の受け口となります。係り受け矢印に付加される"D"という文字は係り受けの
-タグで、係り受けの種類を示しています。
+係り先のない文節の受け口となります。係り受け矢印に付加される"nsubj"などの文字はDependencyの
+タグです。
 </p>
-  <p>上方にあるのは表示・編集のためのツールバーで、それぞれの機能は左から順に次の通りです。
+  <p>上方のツールバーには左から順に次の機能が割り当てられています。
 </p>
   <table class="wikitable">
     <tbody>
@@ -172,7 +173,7 @@ IndexカラムからSenカラムまでの範囲（つまり文本体が表示さ
 表示系のコマンドは編集内容には影響しませんので、随時見やすい形式に調整して編集を行います。
 </p>
   <p>
-    <img src="img/079.png" alt="079.png" id="emb-079.png-1" title="079.png" class="embed-image" width="262" height="218" />
+    <img src="img/fig179.png" class="embed-image" width="300" />
   </p>
 
   <hr />
@@ -181,12 +182,12 @@ IndexカラムからSenカラムまでの範囲（つまり文本体が表示さ
 このダイアログを通じてさまざまな表示上のマージン値や係り受けの矢印形状などを変更することができます。
 </p>
   <p>
-    <img src="img/083.png" alt="083.png" id="emb-083.png-1" title="083.png" class="embed-image" width="368" height="319" />
+    <img src="img/fig183.png" class="embed-image" width="300" />
 </p>
 </div>
         <hr>
         <div id="topic_footer">
-          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+          <div id="topic_footer_content">Copyright &copy; 2022 by NAIST, Kyushu Univ. and Sowa Research. All Rights Reserved.</div>
         </div>
       </article>
 

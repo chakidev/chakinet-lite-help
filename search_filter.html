@@ -60,48 +60,25 @@
   <div id="main">
     <article>
 <div class="wiki-content">
-  <p>コーパス検索（文検索）・KWIC検索いずれの検索においても、検索条件にフィルタを付けることができます。
+
+  <h2>検索フィルタを設定する</h2>
+
+  <p>全文検索・KWIC検索において、検索条件にフィルタを付けることができます。
 フィルタには、検索対象となるドキュメントを限定するための「ドキュメントフィルタ」と、検索結果の一部を
 KWICリストとして受け取るための「Resultsetフィルタ」の２種類が用意されています。
 </p>
-  <p>いずれのフィルタも、"Search Conditions"パネルの"Filter"タブを開き、
+  <p>いずれのフィルタも、検索条件設定エリアの"Filter"タブを開き、
 "Enable Filter"チェックボックスをチェックした状態で検索を行ったときに有効となります。
 </p>
   <p>
-    <img src="img/101.png" alt="101.png" id="emb-101.png-1" title="101.png" class="embed-image" width="149" height="46" />
+    <img src="img/fig201.png" class="embed-image" width="600" />
 </p>
-  <p>このチェックボックスの状態は、"Command"パネルのツールバー左端のボタンと連動しているので、
-"Filter"タブから離れていても、"Command"パネル経由でOn/Offが可能です。
+  <p>フィルタがOn状態になっている場合のみ、フィルタ条件の各入力欄が編集可能状態となります。
 </p>
+
+<h3 id="h3-Resultset.E3.83.95.E3.82.A3.E3.83.AB.E3.82.BF">Resultsetフィルタ</h3>
   <p>
-    <img src="img/102.png" alt="102.png" id="emb-102.png-1" title="102.png" class="embed-image" width="297" height="30" />
-</p>
-  <div class="indent">※ 検索ボタンの近くにフィルタ状態を表示することにより、フィルタを設定したことを忘れたまま検索してしまうのを防ぐことが目的です。
-</div>
-  <p>
-    <br />
-このボタンを押すことでもフィルタのOn/Offが可能です。
-</p>
-  <p>フィルタをOn状態にすると、フィルタ条件の各入力欄が編集可能状態となります。
-</p>
-  <p>
-    <img src="img/105.png" alt="105.png" id="emb-105.png-1" title="105.png" class="embed-image" width="533" height="226" />
-</p>
-  <h3 id="h3-.E3.83.89.E3.82.AD.E3.83.A5.E3.83.A1.E3.83.B3.E3.83.88.E3.82.BF.E3.82.B0.E3.83.95.E3.82.A3.E3.83.AB.E3.82.BF">ドキュメントタグフィルタ</h3>
-  <p>
-    <img src="img/103.png" alt="103.png" id="emb-103.png-1" title="103.png" class="embed-image" width="433" height="63" />
-</p>
-  <p>ここに入力した文字列と完全に一致する書誌情報（ドキュメント属性）を持つドキュメントのみが検索対象となります。
-書誌情報はキーと値のペアですが、ここでは固定で"Bib_ID"キーのみを対象として一致判定を行います。
-例えば、コーパスに4つのドキュメントがあって、Bib_IDが順に"BK_01", "BK_02", "BK_03", "BK_04"とアサインされている場合、
-ここで"BK_01"を指定することで、最初のドキュメントのみが検索対象となります。
-</p>
-  <p>書誌情報は、CreateCorpus時に .bibファイル（書誌情報定義ファイル）を明示的に指定するか、フォルダを指定して
-作成した場合にのみドキュメントに付加されます。後者の場合はファイル名がBib_IDの値になります。
-</p>
-  <h3 id="h3-Resultset.E3.83.95.E3.82.A3.E3.83.AB.E3.82.BF">Resultsetフィルタ</h3>
-  <p>
-    <img src="img/104.png" alt="104.png" id="emb-104.png-1" title="104.png" class="embed-image" width="435" height="107" />
+    <img src="img/fig204.png" class="embed-image" width="400" />
 </p>
   <p>検索により得られる結果(Resultset)に対して、「何番目から（開始位置）」「最大何件まで（件数）」
 「どんな順序で（順序）」結果を得るかを指定することができます。
@@ -152,6 +129,7 @@ Randomを指定した場合、"Starting At"指定は無視されます。<br />
 </li>
   </ul>
   <h4 id="h4-Auto.20Increment">Auto Increment</h4>
+  <ul>
   <p>この指定はやや特殊なもので、通常はOffとします。<br />
 同じ条件で先頭から例えば10レコードずつ取得したい、というような場合に、
 Max Countを"10"としてこのスイッチをOnにすると、検索実行のたびに自動的に"Starting At"の値が
@@ -160,10 +138,26 @@ Max Countを"10"としてこのスイッチをOnにすると、検索実行の�
 この条件は、取り出し順序が"Incremental"である時にのみ有効です。<br />
 KWIC検索よりも、文抽出検索でコーパス全文を少しずつ見たい場合などに適しています。
 </p>
+</ul>
+
+  <h3 id="h3-.E3.83.89.E3.82.AD.E3.83.A5.E3.83.A1.E3.83.B3.E3.83.88.E3.82.BF.E3.82.B0.E3.83.95.E3.82.A3.E3.83.AB.E3.82.BF">ドキュメントタグフィルタ</h3>
+  <p>
+    <img src="img/fig203.png" class="embed-image" width="400" />
+</p>
+  <p>ここに入力した文字列と完全に一致する書誌情報（ドキュメント属性）を持つドキュメントのみが検索対象となります。
+書誌情報はキーと値のペアですが、ここでは固定で"Bib_ID"キーのみを対象として一致判定を行います。
+例えば、コーパスに4つのドキュメントがあって、Bib_IDが順に"BK_01", "BK_02", "BK_03", "BK_04"とアサインされている場合、
+ここで"BK_01"を指定することで、最初のドキュメントのみが検索対象となります。
+</p>
+  <p>書誌情報は、CreateCorpus時に .bibファイル（書誌情報定義ファイル）を明示的に指定するか、フォルダを指定して
+作成した場合にのみドキュメントに付加されます。後者の場合はファイル名がBib_IDの値になります。
+</p>
+<p>UD Treebankコーパスでは書誌情報は使用できません。</p>
+
 </div>
         <hr>
         <div id="topic_footer">
-          <div id="topic_footer_content">Copyright &copy; 2022 by Sowa Research Co., Ltd.. All Rights Reserved.</div>
+          <div id="topic_footer_content">Copyright &copy; 2022 by NAIST, Kyushu Univ. and Sowa Research. All Rights Reserved.</div>
         </div>
       </article>
 
