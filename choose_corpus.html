@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="favicon.ico"/>
-    <title>インストール</title>
+    <title>ChaKi.NET Lite ヘルプ</title>
     <meta name="description" content="" />
     <meta name="keywords" content="">
 
@@ -59,12 +59,28 @@
   <div id="main">
     <article>
 <div class="wiki-content">
-  <h3>ChaKi.NET lite本体のインストール</h3>
-  <p>リリースページより ChaKiNetLiteSetup64.msi ファイルをダウンロードし、ダブルクリックにより本体のインストールを開始します。<br />
-  画面の指示に従ってインストールを完了します。
+  <h2>検索対象コーパスを決める</h2>
+  <p>検索を行う前に、検索の対象とするデータベースを登録・設定する必要があります。この操作はコーパス選択エリアにおいて行います。</p>
+
+  <h3>Universal Dependency Treebankデータベースを一括で登録する</h3>
+  <p>TreebankデータベースのルートフォルダをWindowsのエクスプローラからコーパス選択エリア上へドラッグ＆ドロップすることで、ルート以下の全てのコーパスを一括登録できます。<br/>
+    <img src="img/fig014.png" width="600">
   </p>
-  <p>「既に同じアプリケーションがインストールされています」というメッセージが出た場合は、コントロールパネルの「アプリの追加と削除」からChaKi.NET liteをアンインストールし、再インストールを行ってください。
+  <p>上記の操作が完了すると、コーパス選択エリアにはTreebankコーパスのツリー状のリストが表示されるようになります（下図）。ここでのツリー階層はデータベースファイル群のフォルダ階層を反映しており、Treebankの場合は言語ごとにグルーピングされたものとなっています。<br/>
+    <img src="img/fig015.png" width="200">
   </p>
+  <p>リストの中から、検索対象としたいコーパス名の左にあるチェックボックスにチェックを入れて選択状態にします。複数チェックを入れることにより複数のコーパスを同時に検索対象として選択することができます。チェックされたコーパス名は赤色で強調表示されます。<br/>
+    <img src="img/fig016.png" width="200">
+  </p>
+  <p>ここで登録・選択したコーパスのリストはアプリケーション終了時に記憶され、次回起動時には状態が復元されます。</p>
+
+  <h3>登録を解除する</h3>
+  <p>下部の"Del"ボタンをクリックすると、カレントコーパス（コーパス名の背景が青色で表示されているもの）を登録解除できます。</p>
+  <p>また、"Del Alll"ボタンをクリックすると、すべてのコーパスを一括して登録解除できます。</p>
+
+  <h3>個別にコーパス（データベースファイル）を登録する</h3>
+  <p>オプションとして、下部の"Add..."ボタンによりSQLiteデータベースファイルを一つずつ登録・追加することができます。登録されたコーパスはツリーのルートに追加されます。</p>
+
 </div>
         <hr>
         <div id="topic_footer">

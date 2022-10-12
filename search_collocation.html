@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="favicon.ico"/>
-    <title>取得したKWICデータに対する統計を取る（Collocation）</title>
+    <title>ChaKi.NET Lite ヘルプ</title>
     <meta name="description" content="" />
     <meta name="keywords" content="">
 
@@ -28,6 +28,7 @@
       <link href="css/hnd.content.css" rel="stylesheet" />
       <link rel='stylesheet' type='text/css' href='css/chaki.css'>
 </head>
+
 
 <body class="md-nav-expanded">
   <header class="headroom">
@@ -168,7 +169,7 @@
 </div>
   <div class="indent">
     <div class="indent">
-      <img src="img/027.png" alt="027.png" id="emb-027.png-1" title="027.png" class="embed-image" width="289" height="104" />
+      <img src="img/fig127.png" class="embed-image" width="289" height="104" />
       <br />
 （ここで、<em>N</em>=コーパスの総語数; <em>S</em>=ウィンドウ・スパンのサイズ）
 </div>
@@ -177,7 +178,7 @@
 </div>
   <div class="indent">
     <div class="indent">
-      <img src="img/028.png" alt="028.png" id="emb-028.png-1" title="028.png" class="embed-image" width="122" height="47" />
+      <img src="img/fig128.png" class="embed-image" width="122" height="47" />
       <br />
 </div>
   </div>
@@ -185,7 +186,7 @@
 </div>
   <div class="indent">
     <div class="indent">
-      <img src="img/029.png" alt="029.png" id="emb-029.png-1" title="029.png" class="embed-image" width="85" height="76" />
+      <img src="img/fig129.png" class="embed-image" width="85" height="76" />
       <br />
 </div>
   </div>
@@ -193,7 +194,7 @@
 </div>
   <div class="indent">
     <div class="indent">
-      <img src="img/030.png" alt="030.png" id="emb-030.png-1" title="030.png" class="embed-image" width="193" height="47" />
+      <img src="img/fig130.png" class="embed-image" width="193" height="47" />
       <br />
 </div>
   </div>
@@ -201,11 +202,11 @@
 </div>
   <div class="indent">
     <div class="indent">中心語cが生起する以外の場所に共起語nが現れる確率は、<br />
-<img src="img/031.png" alt="031.png" id="emb-031.png-1" title="031.png" class="embed-image" width="148" height="47" /><br />で表されます。
+<img src="img/fig131.png" class="embed-image" width="148" height="47" /><br />で表されます。
 期待される共起の回数は、<br />
-<img src="img/032.png" alt="032.png" id="emb-032.png-1" title="032.png" class="embed-image" width="104" height="41" /><br />
+<img src="img/fig132.png" class="embed-image" width="104" height="41" /><br />
 このpとEを用いて、Z scoreは次の式で表されます。<br />
-<img src="img/033.png" alt="033.png" id="emb-033.png-1" title="033.png" class="embed-image" width="221" height="54" /><br />
+<img src="img/fig133.png" class="embed-image" width="221" height="54" /><br />
 </div>
   </div>
   <p>これらの統計量は、各語に対してすべて一度に計算され、１行に表示されます。
@@ -327,22 +328,6 @@ StopwordはGap長の計算には含められます。
     <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
     <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
     <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
-
-    <script>
-      $(function() {
-        $('#toc').jstree({
-          'core' : {
-            'data' : {
-              'url' : 'toc.html',
-              'data' : function (node) { return { 'id' : node.id }; }
-            }
-          }
-        })
-        .on("click", "a", function() {
-
-        document.location.href = this;
-        });;
-      });
-    </script>
+    <script src="./helper.js"></script>
   </body>
 </html>

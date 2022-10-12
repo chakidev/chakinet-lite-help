@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="favicon.ico"/>
-    <title>画面各部の説明</title>
+    <title>ChaKi.NET Lite ヘルプ</title>
     <meta name="description" content="" />
     <meta name="keywords" content="">
 
@@ -59,10 +59,29 @@
   <div id="main">
     <article>
 <div class="wiki-content">
-  <h3>画面各部の説明</h3>
-  <img src="img/fig013.png" width="800">
+  <h2>画面各部の説明</h2>
 
-  <p></p>
+  <p>アプリケーション起動後のウィンドウの状態は下図のようになっています。</p>
+    <img src="img/fig013.png" width="800">
+
+  <h5>(1) コーパス選択エリア</h5>
+  <p>検索対象とするコーパスを選択します。</p>
+
+  <h5>(2) 条件設定・検索指示エリア</h5>
+  <p>条件を入力し、検索を開始します。検索タイプには以下の3種類があります。
+    <ul>
+      <li><strong>文字列検索(StringSearch)</strong>: 文字列をキーとしてその文内出現を検索</li>
+      <li><strong>語属性検索(TagSearch)</strong>: 語とその属性をキーとしてその文内出現を検索・またはパターン数をカウント</li>
+      <li><strong>Dependency検索(DependencySearch)</strong>: 語/文節の属性および依存関係をキーとしてその文内出現を検索・またはパターン数をカウント</li>
+    </ul>
+  </p>
+
+  <h5>(3) 検索結果表示エリア</h5>
+  <p>検索結果をSentence表示・KWIC表示・パターンカウントリストの形で表示します。</p>
+
+  <h5>(4) Depedency情報表示エリア</h5>
+  <p>指定した文内の依存関係を表示します。（タブにより前後の文を表示するContext Panelに切り替えられます。）</p>
+
 </div>
         <hr>
         <div id="topic_footer">

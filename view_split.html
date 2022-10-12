@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="favicon.ico"/>
-    <title>KwicViewを二分割表示する</title>
+    <title>ChaKi.NET Lite ヘルプ</title>
     <meta name="description" content="" />
     <meta name="keywords" content="">
 
@@ -28,6 +28,7 @@
       <link href="css/hnd.content.css" rel="stylesheet" />
       <link rel='stylesheet' type='text/css' href='css/chaki.css'>
 </head>
+
 
 <body class="md-nav-expanded">
   <header class="headroom">
@@ -114,22 +115,6 @@
     <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
     <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
     <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
-
-    <script>
-      $(function() {
-        $('#toc').jstree({
-          'core' : {
-            'data' : {
-              'url' : 'toc.html',
-              'data' : function (node) { return { 'id' : node.id }; }
-            }
-          }
-        })
-        .on("click", "a", function() {
-
-        document.location.href = this;
-        });;
-      });
-    </script>
+    <script src="./helper.js"></script>
   </body>
 </html>

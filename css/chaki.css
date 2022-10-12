@@ -5,29 +5,35 @@ BODY {
        }
 
 
-h1 { color: #333333;
-     font-weight: bold;
-     font-size: 14pt;
-     border-style: solid;
-     border-color: #9999cc;
-     border-width: 0 thick thin 0 ;   
-     padding: 0.3ex 2.4ex 0.3ex 1.2ex;
+h1 {
+       color: #333333;
+       font-weight: bold;
+       font-size: 14pt;
+       border-style: solid;
+       border-color: #9999cc;
+       border-width: 0 thick thin 0 ;   
+       padding: 0.3ex 2.4ex 0.3ex 1.2ex;
 
- }
+}
 
-h2 { border-style: solid;
-     border-color: #9999cc;
-     border-width: 0 0 0 thick;   
-     font-size: 12pt;
-     padding: 0.3ex 1.2ex 0.3ex 1.2ex;
-     color: #036;
-     background: white;
-     font-weight: bold; }
-
-h3 {
+ h2 {
        background-color: #ccccff;
        font-weight: bold;
+       font-size: 12pt;
+       line-height: 1.5;
+       padding: 3px;
+}
+
+h3 {
+       border-style: solid;
+       border-color: #9999cc;
+       border-width: 0 0 0 thick;   
        font-size: 11pt;
+       padding: 0.3ex 1.2ex 0.3ex 1.2ex;
+       color: #036;
+       background: white;
+       font-weight: bold; 
+       line-height: 1.5;
 }
 
 h4 {
@@ -88,6 +94,10 @@ BLOCKQUOTE{
 IMG {
        border:0;
 }
+IMG.embed-image {
+       margin-left: 50px;
+}
+
 ABBR {
            font-weight: bold;
            color:gray
@@ -107,21 +117,25 @@ ADDRESS {
        font-family: helvetica;
 }
 
-table{
-  border-width: 4px;
-  border-style: solid;
-  border-color: #9999cc;
-  margin-left:15%;
-  margin-right:15%;
-  border-collapse: collapse;
+table {
+       border: solid 3px #9999cc;
+       margin-left:15%;
+       margin-right:15%;
 }
+
+table th, table td {
+       border: solid 1px #9999cc;
+}
+
 th {
-  background-color: #ffff00;
-  font-size: 9pt;
+       color: #ffffff;
+       background: #20A0A0;
+       font-size: 9pt;
 }
 td {
 	font-size: 9pt;
 }
+
 pre { 
   white-space:  pre;
   padding:      0.5em;
@@ -146,7 +160,7 @@ UL{
        margin-right:10%
 	   }
 	   
-/********** ãríç **********/
+/********** ÔøΩrÔøΩÔøΩ **********/
 ol#footnote {
   margin: 0px;
   padding: 0px 0px 0px 1.5em;

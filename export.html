@@ -73,15 +73,15 @@
   <table class="wikitable">
     <tbody>
       <tr>
-        <td>Sentence-wise</td>
+        <th>Sentence-wise</th>
         <td>全文を1カラムに出力</td>
       </tr>
       <tr>
-        <td>Context-wise</td>
+        <th>Context-wise</th>
         <td>KWICの左文脈・中心語・右文脈をそれぞれカラムに分けて出力</td>
       </tr>
       <tr>
-        <td>Word-wise</td>
+        <th>Word-wise</th>
         <td>語単位でカラムに分けて出力</td>
       </tr>
     </tbody>
@@ -124,22 +124,6 @@ Windowsのメモ帳で開いた状態になりますので、必要に応じて�
     <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
     <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
     <script src="vendors/jstree-3.3.10/jstree.min.js"></script>
-
-    <script>
-      $(function() {
-        $('#toc').jstree({
-          'core' : {
-            'data' : {
-              'url' : 'toc.html',
-              'data' : function (node) { return { 'id' : node.id }; }
-            }
-          }
-        })
-        .on("click", "a", function() {
-
-        document.location.href = this;
-        });;
-      });
-    </script>
+    <script src="./helper.js"></script>
   </body>
 </html>
